@@ -20,9 +20,23 @@
 5. [Hooks Avançados](#hooks-avançados)
    - [useLayoutEffect](#8-uselayouteffect)
    - [useImperativeHandle](#9-useimperativehandle)
-6. [Custom Hooks](#custom-hooks)
-7. [Boas Práticas](#boas-práticas)
-8. [Recursos Adicionais](#recursos-adicionais)
+6. [Hooks Modernos (React 18/19)](#hooks-modernos-react-1819)
+
+- [useId](#10-useid)
+- [useTransition](#11-usetransition)
+- [useDeferredValue](#12-usedeferredvalue)
+- [useSyncExternalStore](#13-usesyncexternalstore)
+- [useInsertionEffect](#14-useinsertioneffect)
+- [useOptimistic](#15-useoptimistic)
+- [useActionState](#16-useactionstate)
+- [useFormStatus (react-dom)](#17-useformstatus-react-dom)
+- [useEffectEvent](#18-useeffectevent)
+- [use (API, não é Hook)](#19-use-api-não-é-hook)
+
+7. [Custom Hooks](#custom-hooks)
+8. [Boas Práticas](#boas-práticas)
+9. [Hooks mais usados no mercado (2025)](#hooks-mais-usados-no-mercado-2025)
+10. [Recursos Adicionais](#recursos-adicionais)
 
 ---
 
@@ -1040,6 +1054,281 @@ function Formulario() {
 
 ---
 
+## Hooks Modernos (React 18/19)
+
+Os lançamentos do React 18 e React 19 trouxeram novos hooks e APIs focados em acessibilidade, performance, integração com stores externas e uma experiência melhor para ações assíncronas e formulários. Abaixo, os destaques mais atuais e relevantes em 2025.
+
+### 10. useId
+
+O que faz? Gera IDs estáveis e únicos por árvore de renderização, úteis para acessibilidade (associar label e input) e componentes controlados/SSR.
+
+Quando usar?
+
+- Associar `label` a `input` sem colisão de IDs
+- Garantir IDs estáveis com SSR e hidratação
+
+Exemplo:
+
+```javascript
+import { useId } from "react";
+
+function CampoTexto({ label }) {
+  const id = useId();
+  return (
+    <div>
+      <label htmlFor={id}>{label}</label>
+      <input id={id} type="text" />
+    </div>
+  );
+}
+```
+
+Boas práticas:
+
+- Não use `useId` como `key` em listas; chaves devem vir dos dados.
+
+---
+
+### 11. useTransition
+
+O que faz? Marca atualizações como “não urgentes”, permitindo que a UI continue responsiva enquanto cálculos caros são atualizados em segundo plano.
+
+Quando usar?
+
+- Busca/filtragem/paginação de listas grandes
+- Atualizações que podem esperar (ex.: resultados de busca) sem travar digitação
+
+Exemplo:
+
+```javascript
+import { useState, useTransition } from "react";
+
+function Busca() {
+  const [termo, setTermo] = useState("");
+  const [resultado, setResultado] = useState([]);
+  const [isPending, startTransition] = useTransition();
+
+  function onChange(e) {
+    const valor = e.target.value;
+    setTermo(valor); // atualização urgente (input)
+    startTransition(() => {
+      // atualização não urgente (filtrar)
+      setResultado(filtraDados(valor));
+    });
+  }
+
+  return (
+    <div>
+      <input value={termo} onChange={onChange} placeholder="Buscar..." />
+      {isPending && <p>Atualizando…</p>}
+      <Lista dados={resultado} />
+    </div>
+  );
+}
+```
+
+---
+
+### 12. useDeferredValue
+
+O que faz? “Atraso” controlado de um valor para suavizar a UI. Útil quando você quer mostrar imediatamente a digitação, mas atrasar um cálculo/render pesado derivado desse valor.
+
+Exemplo:
+
+```javascript
+import { useState, useDeferredValue, useMemo } from "react";
+
+function ListaPesada({ termo }) {
+  const termoAdiado = useDeferredValue(termo);
+  const filtrados = useMemo(
+    () => filtraGrandeLista(termoAdiado),
+    [termoAdiado]
+  );
+  return <Lista dados={filtrados} />;
+}
+```
+
+---
+
+### 13. useSyncExternalStore
+
+O que faz? Sincroniza componentes com stores externas (Redux, Zustand, RxJS, etc.) de forma correta para o modo concorrente.
+
+Quando usar?
+
+- Criar hooks de integração com bibliotecas de estado externas
+
+Exemplo (simplificado):
+
+```javascript
+import { useSyncExternalStore } from "react";
+
+function useContadorStore(store) {
+  return useSyncExternalStore(store.subscribe, store.getSnapshot);
+}
+```
+
+---
+
+### 14. useInsertionEffect
+
+O que faz? Parecido com `useLayoutEffect`, mas pensado para inserir estilos antes da renderização visual. Comum em libs de CSS-in-JS.
+
+Quando usar?
+
+- Apenas para bibliotecas que precisam injetar CSS de forma previsível. Evite em apps comuns.
+
+---
+
+### 15. useOptimistic
+
+Disponível no React 19, facilita atualizações otimistas durante mutações assíncronas, exibindo imediatamente o estado esperado enquanto a requisição ainda está em andamento.
+
+Exemplo (otimista ao renomear):
+
+```javascript
+import { useOptimistic } from "react";
+
+function Renomear({ nomeAtual, onConfirmado }) {
+  const [nomeOtimo, setNomeOtimo] = useOptimistic(nomeAtual);
+
+  async function enviar(formData) {
+    const novoNome = formData.get("nome");
+    setNomeOtimo(novoNome);
+    const final = await atualizarNoServidor(novoNome);
+    onConfirmado(final);
+  }
+
+  return (
+    <form action={enviar}>
+      <p>Nome: {nomeOtimo}</p>
+      <input name="nome" defaultValue={nomeAtual} />
+      <button>Salvar</button>
+    </form>
+  );
+}
+```
+
+---
+
+### 16. useActionState
+
+Novo no React 19. Simplifica o gerenciamento de estado de formulários e “Actions” (funções assíncronas chamadas por `<form>`), fornecendo o estado atual e se há uma submissão pendente.
+
+Exemplo:
+
+```javascript
+import { useActionState } from "react";
+
+async function atualizarNome(estadoAnterior, formData) {
+  const nome = formData.get("nome");
+  const erro = await apiAtualizar(nome);
+  return erro ?? null;
+}
+
+function FormNome() {
+  const [erro, submitAction, pendente] = useActionState(atualizarNome, null);
+  return (
+    <form action={submitAction}>
+      <input name="nome" />
+      <button disabled={pendente}>Salvar</button>
+      {erro && <p>Erro: {erro}</p>}
+    </form>
+  );
+}
+```
+
+Notas:
+
+- Em versões Canary, essa API foi chamada de `useFormState` em `react-dom`. No React 19 estável, use `react.useActionState`.
+
+---
+
+### 17. useFormStatus (react-dom)
+
+Hook do `react-dom` (React 19) que permite a componentes filhos lerem o status do `<form>` pai (por exemplo, `pending`). Útil em design systems.
+
+Exemplo:
+
+```javascript
+import { useFormStatus } from "react-dom";
+
+function BotaoEnviar() {
+  const { pending } = useFormStatus();
+  return (
+    <button type="submit" disabled={pending}>
+      {pending ? "Enviando..." : "Enviar"}
+    </button>
+  );
+}
+```
+
+---
+
+### 18. useEffectEvent
+
+Novo no React 19.2. Ajuda a separar “eventos” disparados dentro de um Effect sem que eles forcem a reexecução do Effect por mudanças de dependências, evitando closures obsoletas.
+
+Exemplo:
+
+```javascript
+import { useEffect, useEffectEvent } from "react";
+
+function Chat({ salaId, tema }) {
+  const onConectado = useEffectEvent(() => {
+    toast.success("Conectado!", { theme: tema });
+  });
+
+  useEffect(() => {
+    const conn = conectar(salaId);
+    conn.on("connected", () => onConectado());
+    return () => conn.disconnect();
+  }, [salaId]); // tema não é dep.; onConectado sempre “vê” o valor atual
+}
+```
+
+Cuidados:
+
+- Use apenas para lógica de evento disparada dentro de Effects; não é “atalho” para omitir dependências.
+
+---
+
+### 19. use (API, não é Hook)
+
+API nova no React 19 para ler Promises e Context diretamente durante a renderização (suspende até resolver). Não é um Hook, mas segue regras similares de uso apenas em render.
+
+Exemplo (Promise):
+
+```javascript
+import { Suspense, use } from "react";
+
+function Comentarios({ promise }) {
+  const comentarios = use(promise); // Suspense até resolver
+  return (
+    <ul>
+      {comentarios.map((c) => (
+        <li key={c.id}>{c.texto}</li>
+      ))}
+    </ul>
+  );
+}
+
+function Pagina({ promise }) {
+  return (
+    <Suspense fallback={<p>Carregando…</p>}>
+      <Comentarios promise={promise} />
+    </Suspense>
+  );
+}
+```
+
+Observações:
+
+- Não suporte Promises criadas dentro do render; use uma fonte com cache/Suspense.
+- Também permite ler Context condicionalmente (onde `useContext` não funcionaria por causa de early return).
+
+---
+
 ## Custom Hooks
 
 **O que são?** Hooks personalizados que você mesmo cria para reutilizar lógica entre componentes.
@@ -1363,6 +1652,18 @@ function Componente() {
 
 ---
 
+## Hooks mais usados no mercado (2025)
+
+Baseado na documentação oficial e práticas comuns em produtos de grande porte, estes são os hooks que você mais verá no dia a dia:
+
+- Altíssima frequência: `useState`, `useEffect`, `useMemo`, `useCallback`, `useRef`, `useContext`.
+- Comuns em apps complexos: `useReducer` (estado complexo), `useTransition`/`useDeferredValue` (UX responsiva), `useId` (acessibilidade), `useEffectEvent` (efeitos mais previsíveis), `useOptimistic` e `useActionState` (fluxos com formulários/Actions no React 19).
+- Em bibliotecas/infra: `useSyncExternalStore` (adapter p/ stores externas), `useInsertionEffect` (CSS-in-JS), `useImperativeHandle`/`useLayoutEffect` (casos específicos de integração DOM).
+
+Regra de ouro: prefira o mais simples que resolve seu problema. Traga hooks “de performance” apenas quando perceber gargalos reais (medições) ou quando o padrão arquitetural os exigir.
+
+---
+
 ## Recursos Adicionais
 
 ### 📖 Documentação Oficial
@@ -1370,6 +1671,17 @@ function Componente() {
 - [React Hooks - Documentação Oficial](https://react.dev/reference/react)
 - [Hooks API Reference](https://react.dev/reference/react/hooks)
 - [Rules of Hooks](https://react.dev/warnings/invalid-hook-call-warning)
+- [React 19 – Blog oficial (estável)](https://react.dev/blog/2024/12/05/react-19)
+- [useActionState (React 19)](https://react.dev/reference/react/useActionState)
+- [useFormStatus (react-dom)](https://react.dev/reference/react-dom/hooks/useFormStatus)
+- [useOptimistic (React 19)](https://react.dev/reference/react/useOptimistic)
+- [useEffectEvent (React 19.2)](https://react.dev/reference/react/useEffectEvent)
+- [use API (React 19)](https://react.dev/blog/2024/12/05/react-19#new-api-use)
+- [useTransition](https://react.dev/reference/react/useTransition)
+- [useDeferredValue](https://react.dev/reference/react/useDeferredValue)
+- [useId](https://react.dev/reference/react/useId)
+- [useSyncExternalStore](https://react.dev/reference/react/useSyncExternalStore)
+- [useInsertionEffect](https://react.dev/reference/react/useInsertionEffect)
 
 ### 🎥 Tutoriais Recomendados
 
