@@ -3,7 +3,7 @@
   border-radius: 16px;
   padding: 16px;
   width: fit-content;
-  height: 120px;
+  height: fit-content;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
@@ -14,9 +14,11 @@
   width: 250px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 button {
-  width: 76px;
+  width: 74px;
   height: 36px;
   border: solid 1px #b787de;
   border-radius: 8px;
@@ -26,4 +28,8 @@ button {
 
 button:active {
   background-color: #b787de;
+}
+
+button.btnLimpar{
+    width: 100%;
 }

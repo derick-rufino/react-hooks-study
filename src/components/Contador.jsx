@@ -16,6 +16,9 @@ export default function Contador() {
         <button onClick={() => setValor(valor + 10)} className="btn">
           + 10
         </button>
+        <button onClick={() => setValor(0)} className="btnLimpar">
+          limpar
+        </button>
       </div>
       <div className="displayValor">{valor}</div>
     </div>
