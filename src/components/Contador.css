@@ -1,0 +1,29 @@
+.container {
+  border: solid 1px #444;
+  border-radius: 16px;
+  padding: 16px;
+  width: fit-content;
+  height: 120px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.btnContainer {
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+}
+button {
+  width: 76px;
+  height: 36px;
+  border: solid 1px #b787de;
+  border-radius: 8px;
+  background-color: #e6cef9;
+  cursor: pointer;
+}
+
+button:active {
+  background-color: #b787de;
+}

@@ -1,4 +1,8 @@
+import Contador from "./components/Contador";
+
 export default function App() {
-  // Componente raiz limpo; pronto para receber o primeiro componente
-  return <></>;
+
+  return <>
+    <Contador/>
+  </>;
 }
