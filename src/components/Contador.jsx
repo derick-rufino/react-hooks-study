@@ -20,13 +20,22 @@ export default function Contador() {
         <button onClick={() => setValor(valor + 10)} className="btn">
           + 10
         </button>
-        <button onClick={() => setValor(valor - 1)} className="btn">
+        <button
+          onClick={() => setValor(Math.max(0, valor - 1))}
+          className="btn"
+        >
           - 1
         </button>
-        <button onClick={() => setValor(valor - 5)} className="btn">
+        <button
+          onClick={() => setValor(Math.max(0, valor - 5))}
+          className="btn"
+        >
           - 5
         </button>
-        <button onClick={() => setValor(valor - 10)} className="btn">
+        <button
+          onClick={() => setValor(Math.max(0, valor - 10))}
+          className="btn"
+        >
           - 10
         </button>
         <button onClick={() => setValor(0)} className="btnLimpar">

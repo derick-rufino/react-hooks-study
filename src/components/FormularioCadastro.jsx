@@ -12,9 +12,14 @@ export default function FormularioCadastro() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setNomeExibido(nome);
     setEmailExibido(email);
     setSenhaExibida(senha);
+
+    setNome("");
+    setEmail("");
+    setSenha("");
   };
 
   return (
@@ -47,7 +52,7 @@ export default function FormularioCadastro() {
         <div className="form-group">
           <label htmlFor="senha">Senha</label>
           <input
-            type="text"
+            type="password"
             id="senha"
             placeholder="Mínimo 6 caracteres"
             minLength={6}
