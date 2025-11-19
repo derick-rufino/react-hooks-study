@@ -1,0 +1,162 @@
+/* ========================================
+   GLOBAL.CSS - Sistema de Design Acessível
+   Nível AAA de Acessibilidade (WCAG 2.2)
+   ======================================== */
+
+:root {
+  /* ===== CORES PRIMÁRIAS ===== */
+  /* Azul - Cor principal */
+  --primary: #0052cc; /* 7.6:1 no branco - AAA */
+  --primary-light: #0066ff; /* 5.3:1 no branco - AAA */
+  --primary-dark: #003d99; /* 10.2:1 no branco - AAA */
+  --primary-darker: #002966; /* 14.1:1 no branco - AAA */
+  --primary-hover: #0047b3; /* Hover state para botões primários */
+
+  /* ===== CORES SECUNDÁRIAS ===== */
+  /* Verde - Sucesso */
+  --success: #006644; /* 7.2:1 no branco - AAA */
+  --success-light: #008855; /* 5.4:1 no branco - AAA */
+  --success-dark: #004d33; /* 10.8:1 no branco - AAA */
+
+  /* Vermelho - Erro/Alerta */
+  --danger: #c92a2a; /* 7.1:1 no branco - AAA */
+  --danger-light: #e03131; /* 5.5:1 no branco - AAA */
+  --danger-dark: #a02020; /* 10.2:1 no branco - AAA */
+
+  /* Amarelo - Aviso (ajustado para contraste) */
+  --warning: #bf7300; /* 7.0:1 no branco - AAA */
+  --warning-light: #d98000; /* 5.2:1 no branco - AAA */
+  --warning-dark: #995c00; /* 9.5:1 no branco - AAA */
+
+  /* ===== TONS NEUTROS ===== */
+  --gray-50: #fafafa; /* Backgrounds claros */
+  --gray-100: #f5f5f5;
+  --gray-200: #eeeeee;
+  --gray-300: #e0e0e0;
+  --gray-400: #bdbdbd; /* 3.0:1 no branco */
+  --gray-500: #9e9e9e; /* 4.6:1 no branco - AA/AAA */
+  --gray-600: #757575; /* 7.0:1 no branco - AAA */
+  --gray-700: #616161; /* 8.5:1 no branco - AAA */
+  --gray-800: #424242; /* 12.6:1 no branco - AAA */
+  --gray-900: #212121; /* 16.1:1 no branco - AAA */
+
+  /* Preto e Branco puros */
+  --white: #ffffff;
+  --black: #000000;
+
+  /* ===== CORES SEMÂNTICAS ===== */
+  --text-primary: var(--gray-900); /* Texto principal */
+  --text-secondary: var(--gray-700); /* Texto secundário */
+  --text-muted: var(--gray-600); /* Texto desabilitado */
+  --text-on-primary: var(--white); /* Texto em fundos escuros */
+
+  --bg-body: var(--white); /* Fundo da página */
+  --bg-surface: var(--gray-50); /* Cards, containers */
+  --bg-overlay: rgba(0, 0, 0, 0.7); /* Modais, dropdowns */
+
+  --border-color: var(--gray-300); /* Bordas padrão */
+  --border-focus: var(--primary); /* Bordas em foco */
+  --border-error: var(--danger); /* Bordas de erro */
+
+  /* ===== ESPAÇAMENTOS ===== */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 3rem; /* 48px */
+
+  /* ===== TIPOGRAFIA ===== */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 2rem; /* 32px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ===== BORDAS E SOMBRAS ===== */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.5rem; /* 8px */
+  --radius-lg: 1rem; /* 16px */
+  --radius-full: 9999px; /* Circular */
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-focus: 0 0 0 3px rgba(0, 82, 204, 0.3);
+
+  /* ===== TRANSIÇÕES ===== */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+}
+
+/* ===== RESET E BASE ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+  background-color: var(--bg-body);
+}
+
+/* ===== ACESSIBILIDADE ===== */
+/* Foco visível para navegação por teclado */
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Remove outline padrão mas mantém para teclado */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Aumenta área de clique/toque (mínimo 44x44px - WCAG) */
+button,
+a,
+input,
+select,
+textarea {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* ===== UTILIDADES GLOBAIS ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

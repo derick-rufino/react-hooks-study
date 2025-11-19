@@ -1,1 +1,10 @@
-
+/* Layout Bento-Box com Flexbox */
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  align-items: flex-start;
+}
