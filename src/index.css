@@ -12,4 +12,16 @@ body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
     sans-serif;
   line-height: 1.5;
+
+  &::-webkit-scrollbar{
+    appearance: none;
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track{
+    background: var(--gray-200);
+  }
+  &::-webkit-scrollbar-thumb{
+    background: var(--gray-500);
+    border-radius: 10px;
+  }
 }

@@ -10,6 +10,14 @@ export default function FormularioCadastro() {
   const [emailExibido, setEmailExibido] = useState("");
   const [senhaExibida, setSenhaExibida] = useState("");
 
+  const [outputVisible, setOutputVisible] = useState(false);
+
+  const allFilled =
+    nome.trim() !== "" &&
+    email.trim() !== "" &&
+    senha.trim() !== "" &&
+    senha.length >= 6; // essa operação retorna um booleano e aramzena na variável
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -20,6 +28,10 @@ export default function FormularioCadastro() {
     setNome("");
     setEmail("");
     setSenha("");
+
+    if (nome !== "" && email !== "" && senha !== "") {
+      setOutputVisible(true);
+    }
   };
 
   return (
@@ -61,24 +73,30 @@ export default function FormularioCadastro() {
           />
         </div>
 
-        <button type="submit">Cadastrar</button>
+        <button type="submit" id="cadastrar" disabled={!allFilled}>
+          {" "}
+          {/* A variável é lida aqui, e apenas quando for diferente do que está aramzaenado na var, o botão é habilitado. se a operação retornar true, o ! vai tornar false e assim a propriedade disabled será false :) */}
+          Cadastrar
+        </button>
       </form>
 
-      <div className="output">
-        <h3>Dados preenchidos:</h3>
-        <p className="display">
-          <strong>Nome:</strong>
-          <span>{nomeExibido || "—"}</span>
-        </p>
-        <p className="display">
-          <strong>E-mail:</strong>
-          <span>{emailExibido || "—"}</span>
-        </p>
-        <p className="display">
-          <strong>Senha:</strong>
-          <span>{senhaExibida || "—"}</span>
-        </p>
-      </div>
+      {outputVisible && (
+        <div className="output">
+          <h3>Dados preenchidos:</h3>
+          <p className="display">
+            <strong>Nome:</strong>
+            <span>{nomeExibido || "—"}</span>
+          </p>
+          <p className="display">
+            <strong>E-mail:</strong>
+            <span>{emailExibido || "—"}</span>
+          </p>
+          <p className="display">
+            <strong>Senha:</strong>
+            <span>{senhaExibida || "—"}</span>
+          </p>
+        </div>
+      )}
     </div>
   );
 }

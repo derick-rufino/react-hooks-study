@@ -1,21 +1,23 @@
 .container-form {
-  flex: 1 1 auto;
-  min-width: min(100%, 700px);
+  min-width: min(100%, 800px);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: var(--spacing-lg);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-lg);
+  border: solid 2px var(--gray-500);
+  background-color: var(--gray-300);
 }
 
 form {
   background-color: var(--white);
-  border: 2px solid var(--gray-200);
   border-radius: var(--radius-md);
   padding: var(--spacing-xl);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  flex: 2;
+  /* flex: 2; */
   min-width: min(100%, 400px);
 }
 
@@ -105,11 +107,10 @@ button[type="submit"]:disabled,
 
 .output {
   background-color: var(--gray-50);
-  border: 2px solid var(--gray-200);
   border-radius: var(--radius-md);
   padding: var(--spacing-lg);
   flex: 1;
-  min-width: min(100%, 300px);
+  min-width: min(300px, 200px);
   height: fit-content;
 }
 
