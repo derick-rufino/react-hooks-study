@@ -1,5 +1,5 @@
 .container-form {
-  min-width: min(100%, 800px);
+  min-width: min(100%, 675px);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -13,12 +13,12 @@
 form {
   background-color: var(--white);
   border-radius: var(--radius-md);
-  padding: var(--spacing-xl);
+  padding: var(--spacing-md);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  /* flex: 2; */
-  min-width: min(100%, 400px);
+  flex: 1;
+  min-width: min(100%, 325px);
 }
 
 form h2 {
@@ -108,9 +108,9 @@ button[type="submit"]:disabled,
 .output {
   background-color: var(--gray-50);
   border-radius: var(--radius-md);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md);
   flex: 1;
-  min-width: min(300px, 200px);
+  min-width: min(100%, 175px);
   height: fit-content;
 }
 
@@ -124,7 +124,6 @@ button[type="submit"]:disabled,
 .display {
   display: flex;
   align-items: baseline;
-  gap: var(--spacing-sm);
   padding: var(--spacing-sm) 0;
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
@@ -138,7 +137,7 @@ button[type="submit"]:disabled,
 .display strong {
   font-weight: var(--font-weight-medium);
   color: var(--text-primary);
-  min-width: 80px;
+  min-width: 70px;
 }
 
 .display span {

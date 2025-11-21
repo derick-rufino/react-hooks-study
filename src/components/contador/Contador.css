@@ -5,7 +5,7 @@
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   flex: 0 1 auto;
-  width: min(100%, 400px);
+  width: min(100%, 300px);
   height: fit-content;
   display: flex;
   flex-direction: column-reverse;
