@@ -1,0 +1,40 @@
+.container-relogio {
+  background-color: var(--white);
+  border: 2px solid var(--gray-500);
+  color: var(--text-primary);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-lg);
+  flex: 0 1 auto;
+  width: min(100%, 300px);
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--spacing-xl);
+}
+
+/* Ícone de pause/play — mantém consistência visual com botões do sistema */
+.pause-play-btn {
+  background: var(--gray-100);
+  border: 2px solid transparent;
+  color: var(--primary);
+  padding: 0.25rem;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+.pause-play-btn:active {
+  background-color: var(--gray-300);
+  transform: scale(0.9);
+}
+.pause-play-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.play-svg {
+  transform: translateX(1px); /* Ajuste visual para centralizar o triângulo */
+}
