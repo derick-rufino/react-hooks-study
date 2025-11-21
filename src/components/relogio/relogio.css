@@ -5,7 +5,7 @@
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   flex: 0 1 auto;
-  width: min(100%, 300px);
+  width: min(100%, fit-content);
   height: fit-content;
   display: flex;
   align-items: center;
@@ -13,7 +13,21 @@
   gap: var(--spacing-xl);
 }
 
-/* Ícone de pause/play — mantém consistência visual com botões do sistema */
+.hours, .minutes, .seconds {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  max-width: 30%;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  text-align: center;
+}
+
 .pause-play-btn {
   background: var(--gray-100);
   border: 2px solid transparent;

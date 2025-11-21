@@ -7,7 +7,8 @@ export default function Relogio() {
   const [estaCorrendo, setEstaCorrendo] = useState(true);
   useEffect(() => {
     // useEffect para colaterais
-    if (estaCorrendo) { // Adicionada uma verificação do estado atual: se estaCorrendo for true, então ele gera um novo timer e limpa o antigo ali embaixo no return
+    if (estaCorrendo) {
+      // Adicionada uma verificação do estado atual: se estaCorrendo for true, então ele gera um novo timer e limpa o antigo ali embaixo no return
       const id = setInterval(() => {
         // Define um novo timer que atualiza a cada 1 segundo e o nome dele é id
         setHorarioAtual(new Date()); // define o horarioAtual como uma nova data a cada 1 segundo, pois está dentro do timer
@@ -23,11 +24,28 @@ export default function Relogio() {
 
   return (
     <div className="container-relogio">
-      <p className="hours">{horas}</p>
-      <p className="minutes">{minutos}</p>
-      <p className="seconds">{segundos}</p>
+      <p className="hours">
+        {horas}
+        <br />
+        <span className="label">Horas</span>
+      </p>
+      <p className="minutes">
+        {minutos}
+        <br />
+        <span className="label">Minutos</span>
+      </p>
+      <p className="seconds">
+        {segundos}
+        <br />
+        <span className="label">Segundos</span>
+      </p>
 
-      <button className="pause-play-btn" onClick={() => setEstaCorrendo(!estaCorrendo)}> {/* sempre o onClick deve passar uma função callback
+      <button
+        className="pause-play-btn"
+        onClick={() => setEstaCorrendo(!estaCorrendo)}
+      >
+        {" "}
+        {/* sempre o onClick deve passar uma função callback
         depois eu usei o operador de negação para inverter o valor atual do estaCorrendo, asssim se estiver, ele muda pra false, e se for false, ele muda pra true sem precisar de mais funções
       */}
         {estaCorrendo ? ( // Condicional ternario // se for true, então usa o svg pause e se for false usa o svg play
