@@ -7,4 +7,5 @@
   flex-wrap: wrap;
   gap: var(--spacing-lg);
   align-items: flex-start;
+  /* justify-content: space-evenly; */
 }
