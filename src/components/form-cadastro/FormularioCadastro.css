@@ -10,7 +10,7 @@
   background-color: var(--gray-300);
 }
 
-form {
+form#cadastro-form {
   background-color: var(--white);
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
@@ -79,7 +79,6 @@ button[type="submit"],
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: var(--transition-fast);
-  margin-top: var(--spacing-sm);
 }
 
 button[type="submit"]:hover,

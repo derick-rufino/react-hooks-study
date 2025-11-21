@@ -36,7 +36,7 @@ export default function FormularioCadastro() {
 
   return (
     <div className="container-form">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="cadastro-form">
         <h2>Cadastro</h2>
 
         <div className="form-group">
