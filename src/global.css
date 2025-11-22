@@ -197,7 +197,6 @@ body {
 /* Aumenta área de clique/toque (mínimo 44x44px - WCAG) */
 button,
 a,
-input,
 select,
 textarea {
   min-height: 44px;

@@ -20,7 +20,7 @@
   border-radius: 0.5rem;
   background: #ffffff;
   color: #0b0b0b;
-  border: 2px solid transparent; 
+  border: 2px solid transparent;
   font-size: var(--font-size-md);
   line-height: 1.1;
   transform-origin: right top;
@@ -48,6 +48,17 @@
 .toast .message {
   font-size: var(--font-size-md);
   opacity: 0.9;
+  /* Multi-line truncation (2 lines) for long messages */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  /* fallback rules for non-WebKit browsers */
+  white-space: normal;
+  word-break: break-word;
 }
 
 .toast .close-btn {

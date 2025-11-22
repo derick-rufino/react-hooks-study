@@ -5,8 +5,7 @@ import { ToastContext } from "../../utils/ToastContext";
 import "./ListaTarefas.css";
 
 export default function ListaTarefas() {
-  const [horarioAtual, setHorarioAtual] = useState(new Date());
-  const [tarefas, setTarefas] = useState(["Tarefa 1", "tarefa 2"]);
+  const [tarefas, setTarefas] = useState([]);
 
   const [tarefaAtual, setTarefaAtual] = useState("");
 
@@ -19,14 +18,26 @@ export default function ListaTarefas() {
     const texto = tarefaAtual.trim();
     if (!texto) return;
 
-    if (tarefas.includes(texto)) {
+    const tarefaExiste = tarefas.some(
+      (tarefa) => tarefa.texto.toLowerCase() === texto.toLowerCase()
+    );
+
+    if (tarefaExiste) {
       setMensagemErro("Tarefa já existe");
       addToast({ type: "error", message: "Tarefa já existe" });
       return;
     }
 
-    setTarefas((prevTarefas) => [...prevTarefas, texto]);
+    const novaTarefa = {
+      id: Date.now(),
+      texto,
+      concluida: false,
+      criadoEm: new Date().toISOString(),
+    };
+
+    setTarefas((prevTarefas) => [novaTarefa, ...prevTarefas]);
     setTarefaAtual("");
+
     addToast({
       type: "success",
       title: "Adicionada",
@@ -34,9 +45,21 @@ export default function ListaTarefas() {
     });
   };
 
-  function handleDelete(index, texto) {
-    setTarefas((prev) => prev.filter((_, i) => i !== index));
-    addToast({ type: "info", message: `Tarefa removida: ${texto}` });
+  function handleDelete(id) {
+    /* AI-ADDED START: handler para remover tarefa por id (gerado por assistente) */
+    setTarefas((prev) => prev.filter((tarefa) => tarefa.id !== id));
+    addToast({ type: "info", message: `Tarefa removida` });
+    /* AI-ADDED END */
+  }
+
+  function toggleComplete(id) {
+    /* AI-ADDED START: handler para alternar propriedade `concluida` (gerado por assistente) */
+    setTarefas((prev) =>
+      prev.map((tarefa) =>
+        tarefa.id === id ? { ...tarefa, concluida: !tarefa.concluida } : tarefa
+      )
+    );
+    /* AI-ADDED END */
   }
 
   async function handleCopy(texto) {
@@ -64,7 +87,7 @@ export default function ListaTarefas() {
         />
         <button
           type="submit"
-          disabled={tarefaAtual.trim() === "" || tarefas.includes(tarefaAtual)}
+          disabled={tarefaAtual === ""}
           className="submit-btn"
         >
           <svg
@@ -85,16 +108,36 @@ export default function ListaTarefas() {
         )}
       </form>
       <ul className="lista-tarefas">
-        {tarefas.map((tarefa, index) => (
-          <li key={index} className="item-tarefa">
-            <p className="texto-tarefa">{tarefa}</p>
+        {tarefas.map((tarefa) => (
+          <li key={tarefa.id} className="item-tarefa">
+            <div className="wrapper-paragrafo">
+              {/* AI-ADDED START: checkbox controlado e ligação com toggleComplete (gerado por assistente) */}
+              <input
+                type="checkbox"
+                className="checkbox-tarefa"
+                checked={!tarefa.concluida}
+                onChange={() => toggleComplete(tarefa.id)}
+                aria-label={`Marcar tarefa ${tarefa.texto} como concluída`}
+              />
+              {/* AI-ADDED END */}
+              <p
+                className={`texto-tarefa ${
+                  tarefa.concluida ? "concluida" : ""
+                }`}
+              >
+                {tarefa.texto}
+              </p>
+            </div>
             <div className="actions-container">
+              {/* AI-ADDED START: botão de copiar com tipo button (gerado por assistente) */}
               <button
+                type="button"
                 className="copiar-texto tarefaAction"
-                onClick={() => handleCopy(tarefa)}
-                aria-label={`Copiar tarefa ${tarefa}`}
+                onClick={() => handleCopy(tarefa.texto)}
+                aria-label={`Copiar tarefa ${tarefa.texto}`}
                 title="Copiar"
               >
+                {/* AI-ADDED END */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -112,12 +155,15 @@ export default function ListaTarefas() {
                   <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
                 </svg>
               </button>
+              {/* AI-ADDED START: botão de apagar com type=button (gerado por assistente) */}
               <button
+                type="button"
                 className="apagarTarefa  tarefaAction"
-                onClick={() => handleDelete(index, tarefa)}
-                aria-label={`Apagar ${tarefa}`}
+                onClick={() => handleDelete(tarefa.id, tarefa.texto)}
+                aria-label={`Apagar ${tarefa.texto}`}
                 title="Apagar"
               >
+                {/* AI-ADDED END */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"

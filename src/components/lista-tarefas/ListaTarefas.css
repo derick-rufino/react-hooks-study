@@ -77,6 +77,85 @@ li.item-tarefa {
   align-items: center;
 }
 
+div.wrapper-paragrafo {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-sm) + 6px);
+  /* let the paragraph area grow/shrink inside the flex row */
+  flex: 1 1 auto;
+  min-width: 0; /* allow children to shrink properly */
+}
+
+/* ! Gerado por IA */
+input[type="checkbox"].checkbox-tarefa {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  padding: 0;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  /* explicit greens so the checkbox stays green regardless of global vars */
+  border: 2px solid #bbf7d0; /* light green */
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease,
+    transform 80ms ease;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 18px 18px; /* larger icon for readability */
+  accent-color: transparent; /* neutralize UA browser accent */
+  box-sizing: border-box;
+}
+
+/* Hover (not checked) */
+input[type="checkbox"].checkbox-tarefa:hover:not(:disabled):not(:checked) {
+  border-color: #16a34a; /* emerald-600 */
+}
+
+/* Focus visible for accessibility - subtle green ring */
+input[type="checkbox"].checkbox-tarefa:focus-visible {
+  outline: 3px solid rgba(22, 163, 74, 0.18);
+  outline-offset: 2px;
+}
+
+/* Checked state: solid green background with white filled check icon (no shadows/gradients) */
+input[type="checkbox"].checkbox-tarefa:checked {
+  background-color: #16a34a; /* emerald-600 */
+  border-color: #8be0a9; /* emerald-700 */
+  /* use stroked white SVG with thicker stroke for better legibility */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z' /></svg>");
+}
+
+/* Hover when checked: slightly darker green */
+input[type="checkbox"].checkbox-tarefa:checked:hover:not(:disabled) {
+  background-color: #14532d; /* darker emerald */
+  border-color: #bbf7d0;
+}
+
+/* Disabled state */
+input[type="checkbox"].checkbox-tarefa:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-color: #d1d5db; /* gray-300 */
+  background-color: #e5e7eb; /* gray-200 */
+  background-image: none;
+}
+
+/* ! Até aqui */
+
+p.texto-tarefa {
+  display: block;
+  word-break: break-word;
+  max-width: calc(100% - 65px);
+  overflow-wrap: anywhere;
+}
+
 div.actions-container {
   display: flex;
   gap: var(--spacing-sm);
