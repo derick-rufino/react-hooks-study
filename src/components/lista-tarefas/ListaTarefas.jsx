@@ -52,14 +52,18 @@ export default function ListaTarefas() {
     /* AI-ADDED END */
   }
 
-  function toggleComplete(id) {
+  function toggleComplete(id, concluida) {
+    if(!concluida === true){
+      addToast({type: "success", message: "Tarefa concluída!"})
+    };
     /* AI-ADDED START: handler para alternar propriedade `concluida` (gerado por assistente) */
     setTarefas((prev) =>
       prev.map((tarefa) =>
         tarefa.id === id ? { ...tarefa, concluida: !tarefa.concluida } : tarefa
-      )
-    );
+  )
+);
     /* AI-ADDED END */
+
   }
 
   async function handleCopy(texto) {
@@ -115,8 +119,8 @@ export default function ListaTarefas() {
               <input
                 type="checkbox"
                 className="checkbox-tarefa"
-                checked={!tarefa.concluida}
-                onChange={() => toggleComplete(tarefa.id)}
+                checked={tarefa.concluida}
+                onChange={() => toggleComplete(tarefa.id, tarefa.concluida)}
                 aria-label={`Marcar tarefa ${tarefa.texto} como concluída`}
               />
               {/* AI-ADDED END */}

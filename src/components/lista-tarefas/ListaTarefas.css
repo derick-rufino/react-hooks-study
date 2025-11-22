@@ -156,6 +156,11 @@ p.texto-tarefa {
   overflow-wrap: anywhere;
 }
 
+p.texto-tarefa.concluida {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
 div.actions-container {
   display: flex;
   gap: var(--spacing-sm);
