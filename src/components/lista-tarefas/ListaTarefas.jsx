@@ -13,6 +13,8 @@ export default function ListaTarefas() {
   const { addToast } = useContext(ToastContext);
   const [, copyText] = useCopyToClipboard();
 
+  const [searchboxOpen, setSearchboxOpen] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const texto = tarefaAtual.trim();
@@ -53,17 +55,16 @@ export default function ListaTarefas() {
   }
 
   function toggleComplete(id, concluida) {
-    if(!concluida === true){
-      addToast({type: "success", message: "Tarefa concluída!"})
-    };
+    if (!concluida === true) {
+      addToast({ type: "success", message: "Tarefa concluída!" });
+    }
     /* AI-ADDED START: handler para alternar propriedade `concluida` (gerado por assistente) */
     setTarefas((prev) =>
       prev.map((tarefa) =>
         tarefa.id === id ? { ...tarefa, concluida: !tarefa.concluida } : tarefa
-  )
-);
+      )
+    );
     /* AI-ADDED END */
-
   }
 
   async function handleCopy(texto) {
@@ -111,9 +112,102 @@ export default function ListaTarefas() {
           <p className="mensagem-erro">{mensagemErro}</p>
         )}
       </form>
+      <div className="list-actions">
+        <div
+          className={`filter-search-container ${
+            searchboxOpen ? "animating-width" : ""
+          }`}
+        >
+          <button
+            type="button"
+            className="filter-tasks"
+            title={
+              !searchboxOpen ? "Pesquisar tarefa" : "Fechar caixa de busca" //Cheio de concionais, mas to amando isso
+            }
+            onClick={() => setSearchboxOpen(!searchboxOpen)}
+          >
+            {!searchboxOpen ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-list-search"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M15 15m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                <path d="M18.5 18.5l2.5 2.5" />
+                <path d="M4 6h16" />
+                <path d="M4 12h4" />
+                <path d="M4 18h4" />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M18 6l-12 12" />
+                <path d="M6 6l12 12" />
+              </svg>
+            )}
+          </button>
+          {searchboxOpen && (
+            <input
+              type="text"
+              name="searchbox"
+              id="searchbox"
+              className="searchbox"
+              autoFocus={true}
+              autoComplete="task"
+              // onChange={handleSearch(e)}
+            />
+          )}
+        </div>
+        <button
+          type="button"
+          className="clearAll-tasks"
+          title="Apagar todas as tarefas"
+          onClick={() => setTarefas([])} // seta como um array vazio mueheheh muto fácil (to até achando que tá errado)
+        >
+          <svg
+            className="deleteAll"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--danger-light)"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-trash-x"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 7h16" />
+            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+            <path d="M10 12l4 4m0 -4l-4 4" />
+          </svg>
+          Limpar tudo
+        </button>
+      </div>
       <ul className="lista-tarefas">
         {tarefas.map((tarefa) => (
-          <li key={tarefa.id} className="item-tarefa">
+          <li key={tarefa.id} className="item-tarefa" name="task">
             <div className="wrapper-paragrafo">
               {/* AI-ADDED START: checkbox controlado e ligação com toggleComplete (gerado por assistente) */}
               <input

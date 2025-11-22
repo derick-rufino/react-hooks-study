@@ -97,7 +97,7 @@ input[type="checkbox"].checkbox-tarefa {
   flex: 0 0 auto;
   border-radius: 8px;
   /* explicit greens so the checkbox stays green regardless of global vars */
-  border: 2px solid #bbf7d0; /* light green */
+  border: 2px solid #6fc58d; /* light green */
   background: transparent;
   display: inline-flex;
   align-items: center;
@@ -148,6 +148,75 @@ input[type="checkbox"].checkbox-tarefa:disabled {
 }
 
 /* ! Até aqui */
+
+div.list-actions {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+div.filter-search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  max-width: 65%;
+  width: fit-content;
+  background-color: var(--gray-200);
+  border-radius: var(--radius-full);
+  padding: 0;
+}
+div.filter-search-container.animating-width {
+  overflow: hidden;
+  animation: widthIncrease 300ms ease forwards;
+  transition: var(--transition-fast);
+}
+
+@keyframes widthIncrease {
+  from {
+    width: 78px;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+div.list-actions button.clearAll-tasks,
+div.list-actions button.filter-tasks {
+  background: var(--gray-200);
+  border: none;
+  color: var(--text-primary);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  font-family: inherit;
+  font-weight: var(--font-weight-medium);
+}
+
+div.list-actions button.filter-tasks {
+  background-color: transparent;
+  padding: var(--spacing-sm);
+}
+
+div.list-actions button.clearAll-tasks:hover {
+  background-color: var(--danger-light);
+  color: var(--white);
+}
+
+div.filter-search-container input[type="text"].searchbox {
+  border: solid 2px var(--gray-400);
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
+  border-radius: var(--radius-full);
+  width: 100% !important;
+}
 
 p.texto-tarefa {
   display: block;

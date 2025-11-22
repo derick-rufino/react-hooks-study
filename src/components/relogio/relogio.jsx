@@ -66,7 +66,7 @@ export default function Relogio() {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            class="size-6 play-svg"
+            className="size-6 play-svg"
           >
             <path
               fill-rule="evenodd"
