@@ -1,11 +1,18 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import useCopyToClipboard from "../../utils/CopyToClipboard";
 import { ToastContext } from "../../utils/ToastContext";
 
 import "./ListaTarefas.css";
 
 export default function ListaTarefas() {
-  const [tarefas, setTarefas] = useState([]);
+  const [tarefas, setTarefas] = useState(() => {
+    const tarefasGuardadas = localStorage.getItem("tarefasGuardadasLocais"); //pega no localStorage o que estiver guardado na caixa com nome "tarefasGuardadasLocais"
+    return tarefasGuardadas ? JSON.parse(tarefasGuardadas) : []; //se houver algo, retona esse valor, se não, retorna um valor padrão (array vazio de tarefas)
+  });
+
+  useEffect(() => {
+    localStorage.setItem("tarefasGuardadasLocais", JSON.stringify(tarefas));
+  }, [tarefas]);
 
   const [tarefaAtual, setTarefaAtual] = useState("");
 
@@ -19,7 +26,7 @@ export default function ListaTarefas() {
 
   const tarefasVisiveis =
     searchboxOpen && searchTerm.trim() !== ""
-      ? tarefas.filter(tarefa =>
+      ? tarefas.filter((tarefa) =>
           tarefa.texto.toLowerCase().includes(searchTermNormalizado)
         )
       : tarefas;
@@ -48,7 +55,7 @@ export default function ListaTarefas() {
 
     setTarefas((prevTarefas) => [novaTarefa, ...prevTarefas]);
     setTarefaAtual("");
-    setMensagemErro("")
+    setMensagemErro("");
 
     addToast({
       type: "success",
@@ -56,10 +63,6 @@ export default function ListaTarefas() {
       message: `Tarefa adicionada: ${texto}`,
     });
   };
-
- /* function handleSearch(texto) {
-    tarefas.filter((tarefa) => tarefa.texto.toLowerCase().includes(texto));
-  } */
 
   function handleDelete(id) {
     /* AI-ADDED START: handler para remover tarefa por id (gerado por assistente) */
@@ -91,7 +94,20 @@ export default function ListaTarefas() {
   return (
     <div className="container-lista-tarefas">
       <form onSubmit={handleSubmit} id="lista-tarefas-form">
-        <h4 className="div-titulo">Lista de Tarefas</h4>
+        <div className="header-listaTarefas">
+          <div>
+            <h4 className="titulo-listaTarefas">Lista de Tarefas</h4>
+            <div className="contador-pendentes">
+              <span className="contador-numero">0</span>
+              Pendentes
+            </div>
+            <div className="contador-concluidas">
+              <span className="contador-numero">0</span>
+              Concluídas
+            </div>
+          </div>
+        </div>
+
         <input
           type="text"
           name="task"
