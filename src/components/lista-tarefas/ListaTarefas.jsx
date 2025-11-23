@@ -4,14 +4,37 @@ import { ToastContext } from "../../utils/ToastContext";
 
 import "./ListaTarefas.css";
 
+// Função utilitária para acessar localStorage com segurança
+const getFromLocalStorage = (key, defaultValue) => {
+  if (typeof window === "undefined") return defaultValue;
+  try {
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : defaultValue;
+  } catch (error) {
+    console.warn(`Erro ao acessar localStorage para a chave "${key}":`, error);
+    return defaultValue;
+  }
+};
+
+const setToLocalStorage = (key, value) => {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    console.warn(
+      `Erro ao salvar no localStorage para a chave "${key}":`,
+      error
+    );
+  }
+};
+
 export default function ListaTarefas() {
   const [tarefas, setTarefas] = useState(() => {
-    const tarefasGuardadas = localStorage.getItem("tarefasGuardadasLocais"); //pega no localStorage o que estiver guardado na caixa com nome "tarefasGuardadasLocais"
-    return tarefasGuardadas ? JSON.parse(tarefasGuardadas) : []; //se houver algo, retona esse valor, se não, retorna um valor padrão (array vazio de tarefas)
+    return getFromLocalStorage("tarefasGuardadasLocais", []);
   });
 
   useEffect(() => {
-    localStorage.setItem("tarefasGuardadasLocais", JSON.stringify(tarefas));
+    setToLocalStorage("tarefasGuardadasLocais", tarefas);
   }, [tarefas]);
 
   const [tarefaAtual, setTarefaAtual] = useState("");
@@ -30,6 +53,10 @@ export default function ListaTarefas() {
           tarefa.texto.toLowerCase().includes(searchTermNormalizado)
         )
       : tarefas;
+
+  // Calcular contadores
+  const tarefasPendentes = tarefas.filter((tarefa) => !tarefa.concluida).length;
+  const tarefasConcluidas = tarefas.filter((tarefa) => tarefa.concluida).length;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -98,11 +125,11 @@ export default function ListaTarefas() {
           <div>
             <h4 className="titulo-listaTarefas">Lista de Tarefas</h4>
             <div className="contador-pendentes">
-              <span className="contador-numero">0</span>
+              <span className="contador-numero">{tarefasPendentes}</span>
               Pendentes
             </div>
             <div className="contador-concluidas">
-              <span className="contador-numero">0</span>
+              <span className="contador-numero">{tarefasConcluidas}</span>
               Concluídas
             </div>
           </div>
