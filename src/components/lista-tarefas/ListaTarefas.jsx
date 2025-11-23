@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import useCopyToClipboard from "../../utils/CopyToClipboard";
-import { ToastContext } from "../../utils/ToastContext";
+import { ToastContext } from "../../contexts/ToastContext";
 
 import "./ListaTarefas.css";
 

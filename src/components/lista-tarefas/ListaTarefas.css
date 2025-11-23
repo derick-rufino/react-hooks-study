@@ -50,6 +50,24 @@ div.container-contadores {
   scale: 0.85;
 }
 
+@media (max-width: 500px) {
+  div.header-listaTarefas {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+
+  div.container-contadores {
+    position: relative;
+    left: -20px;
+    flex-direction: row;
+    gap: var(--spacing-sm);
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+}
+
 h4.titulo-listaTarefas {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);

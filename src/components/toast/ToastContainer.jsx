@@ -2,7 +2,7 @@
 
 import React, { useContext } from "react";
 import "./Toast.css";
-import { ToastContext } from "../../utils/ToastContext";
+import { ToastContext } from "../../contexts/ToastContext";
 
 function Icon({ type }) {
   if (type === "success")

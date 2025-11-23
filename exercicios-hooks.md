@@ -133,33 +133,255 @@
 
 ---
 
-### Exercício 5: Tema Claro/Escuro (useContext)
+### Exercício 5: Sistema de Tema Global (useContext + Custom Hook) 🎨
 
-**Objetivo**: Criar um sistema de tema que pode ser alternado entre claro e escuro.
+> **Meta pedagógica**: Compreender Context API, Provider Pattern, Custom Hooks e gerenciamento de estado global
 
-**Requisitos**:
+#### 🎯 **O que você vai aprender**
 
-- Crie um `TemaContext.jsx` com `createContext()`
-- Crie um componente `TemaProvider` que envolve a aplicação
-- Use `useState` dentro do Provider para controlar o tema atual
-- Crie um hook personalizado `useTema()` para facilitar o uso
-- Crie componentes `Cabecalho`, `Conteudo` e `Rodape` que usam o tema
-- Adicione um botão que alterna o tema
+**Conceitos fundamentais**:
 
-**Desafios extras**:
+- **Context API**: O que é, quando usar e como funciona o "teleporte" de dados
+- **Prop Drilling**: O problema que Context resolve
+- **Provider Pattern**: Padrão de design para fornecer dados globalmente
+- **Custom Hooks**: Como encapsular lógica reutilizável
+- **Composição**: Como estruturar aplicações React de forma modular
 
-- Salve a preferência de tema no `localStorage`
-- Adicione mais temas (ex: "azul", "verde")
-- Aplique estilos CSS diferentes para cada tema
+**Habilidades práticas**:
 
-**Dicas**:
+- Criar contextos com `createContext()`
+- Implementar providers personalizados
+- Usar `useContext()` para consumir dados
+- Escrever custom hooks seguindo convenções
+- Gerenciar estado global de forma eficiente
+- Persistir dados no `localStorage`
 
-- Estrutura do Provider: `<TemaContext.Provider value={{ tema, alternarTema }}>`
-- No hook: `const contexto = useContext(TemaContext)`
-- Validação: `if (!contexto) throw new Error('useTema deve estar dentro de TemaProvider')`
-- Aplique estilos inline ou classes CSS condicionalmente
+---
 
-**O que você aprende**: Context API, prop drilling (e como evitar), hooks personalizados
+#### 🧠 **Base Teórica**
+
+##### **O que é Context API?**
+
+Context é como um "sistema de radiodifusão" do React. Imagine que você tem uma estação de rádio (Provider) que transmite informações, e qualquer aparelho (componente) sintonizado na frequência certa pode receber essas informações, independentemente de onde esteja.
+
+**Problema sem Context (Prop Drilling)**:
+
+```
+App (tema: "claro")
+  ├── Header (precisa passar tema)
+  │   ├── Navigation (precisa passar tema)
+  │   │   └── Logo (USA tema) ❌ Tema passou por 3 níveis!
+  └── Content (precisa passar tema)
+      └── Article (USA tema) ❌ Tema passou por 2 níveis!
+```
+
+**Solução com Context**:
+
+```
+ThemeProvider (transmite tema)
+  └── App
+      ├── Header
+      │   ├── Navigation
+      │   │   └── Logo (recebe tema diretamente) ✅
+      └── Content
+          └── Article (recebe tema diretamente) ✅
+```
+
+##### **O que são Custom Hooks?**
+
+Custom Hooks são funções JavaScript que:
+
+1. **Nome sempre começa com `use`** (convenção obrigatória)
+2. **Encapsulam lógica reutilizável** entre componentes
+3. **Podem usar outros hooks** internamente
+4. **Facilitam a composição** e testabilidade
+
+**Benefícios**:
+
+- Separam lógica de apresentação
+- Reutilizam código entre componentes
+- Tornam componentes mais limpos e focados
+- Facilitam testes e manutenção
+
+---
+
+#### 📋 **Requisitos Progressivos**
+
+##### **🟢 Nível 1: Base Funcional**
+
+1. **Estrutura inicial**:
+
+   - Crie `src/contexts/ThemeContext.js` (ou dentro de `utils/`)
+   - Crie `src/hooks/useTheme.js` (custom hook)
+   - Crie componentes que demonstrem o tema: `Header`, `Content`, `Footer`
+
+2. **Context básico**:
+
+   - Use `createContext()` com valor padrão sensato
+   - Implemente `ThemeProvider` com `useState` interno
+   - Forneça pelo menos: `{ theme, toggleTheme }`
+
+3. **Consumo simples**:
+   - Use `useContext()` diretamente em 2-3 componentes
+   - Implemente alternância entre "light" e "dark"
+   - Aplique estilos baseados no tema atual
+
+##### **🟡 Nível 2: Custom Hook**
+
+4. **Hook personalizado**:
+
+   - Crie `useTheme()` que encapsula `useContext()`
+   - Adicione validação: erro se usado fora do Provider
+   - Torne o uso mais intuitivo nos componentes
+
+5. **Melhorias na experiência**:
+   - Persista tema no `localStorage`
+   - Carregue tema salvo na inicialização
+   - Trate casos de erro (localStorage indisponível)
+
+##### **🔴 Nível 3: Sistema Avançado**
+
+6. **Múltiplos temas**:
+
+   - Suporte a mais temas: "light", "dark", "blue", "nature"
+   - Implemente sistema de cores CSS customizáveis
+   - Crie seletor de tema (não apenas toggle)
+
+7. **Detecção automática**:
+   - Detecte preferência do sistema (`prefers-color-scheme`)
+   - Implemente opção "auto" que segue o sistema
+   - Reaja a mudanças na preferência do SO
+
+---
+
+#### 🏗️ **Estrutura Recomendada de Pastas**
+
+**Opção A - Por funcionalidade (Recomendada)**:
+
+```
+src/
+├── contexts/
+│   └── ThemeContext.js          # Context + Provider
+├── hooks/
+│   └── useTheme.js             # Custom hook
+├── components/
+│   ├── theme/
+│   │   ├── ThemeToggle.jsx     # Botão de alternar tema
+│   │   └── ThemeSelector.jsx   # Seletor múltiplos temas
+│   ├── layout/
+│   │   ├── Header.jsx
+│   │   ├── Content.jsx
+│   │   └── Footer.jsx
+│   └── ui/
+│       └── Button.jsx          # Componentes que usam tema
+└── styles/
+    └── themes.css              # Variáveis CSS por tema
+```
+
+**Opção B - Mais simples**:
+
+```
+src/
+├── utils/
+│   ├── ThemeContext.jsx        # Context + Provider + Hook tudo junto
+│   └── themes.js              # Configuração dos temas
+└── components/
+    ├── Header.jsx
+    ├── Content.jsx
+    └── Footer.jsx
+```
+
+---
+
+#### 💡 **Dicas de Implementação**
+
+##### **1. Criando o Context**
+
+**🤔 Pense nisso**: Qual seria um valor padrão sensato?
+
+```javascript
+// ❌ Ruim - valor null pode quebrar código
+const ThemeContext = createContext(null);
+
+// ✅ Bom - valor padrão funcional
+const ThemeContext = createContext({
+  theme: "light",
+  toggleTheme: () => {},
+  setTheme: () => {},
+});
+```
+
+##### **2. Provider Pattern**
+
+**🤔 Pense nisso**: Como estruturar o valor do contexto?
+
+```javascript
+// ❌ Evite - criar objeto novo a cada render
+<ThemeContext.Provider value={{ theme, toggleTheme }}>
+
+// ✅ Melhor - memoizar o valor
+const contextValue = useMemo(() => ({ theme, toggleTheme }), [theme]);
+<ThemeContext.Provider value={contextValue}>
+```
+
+##### **3. Custom Hook com Validação**
+
+**🤔 Pense nisso**: Como dar feedback útil ao desenvolvedor?
+
+```javascript
+function useTheme() {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error("useTheme deve ser usado dentro de ThemeProvider");
+  }
+  return context;
+}
+```
+
+##### **4. Persistência no localStorage**
+
+**🤔 Pense nisso**: Como lidar com erros de localStorage?
+
+```javascript
+// Considere casos como:
+// - localStorage indisponível (modo privado)
+// - Dados corrompidos
+// - Quota excedida
+```
+
+---
+
+#### 🧪 **Perguntas para Reflexão**
+
+Antes de começar a codificar, reflita:
+
+1. **Arquitetura**: Por que Context é melhor que prop drilling aqui?
+2. **Performance**: Que componentes vão re-renderizar quando o tema mudar?
+3. **UX**: Como o usuário deve ter controle sobre o tema?
+4. **Persistência**: O tema deve ser lembrado entre sessões?
+5. **Acessibilidade**: Como respeitar preferências do sistema?
+6. **Escalabilidade**: Como esse sistema pode crescer no futuro?
+
+---
+
+#### 🔧 **Desafios Progressivos**
+
+1. **Básico**: Tema claro/escuro com toggle
+2. **Intermediário**: Múltiplos temas + localStorage
+3. **Avançado**: Auto-detecção + preferências do sistema
+4. **Expert**: Animações suaves entre temas
+5. **Mestre**: Sistema de cores completamente customizável
+
+---
+
+#### 📚 **Recursos de Aprendizado**
+
+- [React Context Docs](https://react.dev/learn/passing-data-deeply-with-context)
+- [Custom Hooks Docs](https://react.dev/learn/reusing-logic-with-custom-hooks)
+- [localStorage MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+- [prefers-color-scheme MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
+
+**O que você aprende**: Context API, Provider Pattern, Custom Hooks, gerenciamento de estado global, persistência de dados, detecção de preferências do sistema
 
 ---
 
