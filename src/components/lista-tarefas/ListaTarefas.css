@@ -10,7 +10,46 @@ div.container-lista-tarefas {
   width: min(100%, 450px);
 }
 
-h4.div-titulo {
+div.header-listaTarefas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+}
+
+div.header-listaTarefas div.contador-pendentes, div.header-listaTarefas div.contador-concluidas {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  border-radius: var(--radius-full);
+  border: solid 2px transparent;
+  padding: calc(var(--spacing-sm) - 2px) calc(var(--spacing-md) - 4px);
+}
+
+div.header-listaTarefas div.contador-pendentes {
+  background-color: var(--warning-lightest);
+  color: var(--warning-dark);
+  border-color: var(--warning);
+}
+
+div.header-listaTarefas div.contador-concluidas {
+  background-color: var(--success-lightest);
+  color: var(--success-dark);
+  border-color: var(--success);
+}
+
+div.container-contadores {
+  position: absolute;
+  right: -20px;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  scale: 0.85;
+}
+
+h4.titulo-listaTarefas {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   color: var(--text-primary);
@@ -28,9 +67,15 @@ form#lista-tarefas-form {
   border-radius: var(--radius-md);
 }
 
-input[type="text"] {
+input[type="text"]#nomeTarefa {
   max-width: calc(100% - 78px);
+  border: solid 2px var(--gray-600);
 }
+
+input[type="text"]#nomeTarefa:hover , input[type="text"]#nomeTarefa:focus {
+  border-color: var(--primary);
+}
+
 
 button.submit-btn {
   width: 70px;
@@ -100,10 +145,8 @@ div.wrapper-paragrafo {
   display: flex;
   align-items: center;
   gap: calc(var(--spacing-sm) + 6px);
-  /* let the paragraph area grow/shrink inside the flex row */
   flex: 1 1 auto;
   min-width: 0;
-  /* allow children to shrink properly */
 }
 
 /* ! Gerado por IA */
@@ -236,7 +279,7 @@ div.list-actions button.filter-tasks {
 }
 
 div.list-actions button.clearAll-tasks:hover {
-  background-color: var(--danger-light);
+  background-color: var(--danger);
   color: var(--white);
 }
 
@@ -247,12 +290,18 @@ div.list-actions button.clearAll-tasks:hover svg {
 }
 
 div.filter-search-container input[type="text"].searchbox {
-  border: solid 2px var(--gray-400);
+  border: solid 2px var(--gray-500);
   flex: 1 1 auto;
   min-width: 0;
   max-width: none;
+  height: 100%;
   border-radius: var(--radius-full);
   width: 100% !important;
+}
+
+div.filter-search-container input[type="text"].searchbox:focus,
+div.filter-search-container input[type="text"].searchbox:hover {
+  border-color: var(--primary);
 }
 
 p.texto-tarefa {
@@ -273,9 +322,7 @@ div.actions-container {
 }
 
 button.tarefaAction {
-  background: var(--accent-200);
   border: none;
-  color: var(--primary-dark);
   width: 40px;
   height: 40px;
   padding: 0;
@@ -289,13 +336,18 @@ button.tarefaAction {
 }
 
 button.apagarTarefa {
-  background: var(--danger-lighter);
-  color: var(--danger-500);
+  background: transparent;
+  color: var(--danger);
 }
 
 button.apagarTarefa:hover {
-  background: var(--danger-light);
+  background: var(--danger);
   color: var(--white);
+}
+
+button.copiar-texto {
+  background: transparent;
+  color: var(--primary-dark);
 }
 
 button.copiar-texto:hover {
