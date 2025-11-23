@@ -5,12 +5,20 @@
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   flex: 0 1 auto;
-  width: min(100%, fit-content);
+  min-width: 320px;
+  width: 100%;
+  max-width: 500px;
   height: fit-content;
   display: flex;
   align-items: center;
   justify-content: space-around;
   gap: var(--spacing-xl);
+}
+
+@media (min-width: 720px) {
+  .container-relogio {
+    width: auto;
+  }
 }
 
 .hours, .minutes, .seconds {
