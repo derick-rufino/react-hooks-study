@@ -122,7 +122,7 @@ export default function ListaTarefas() {
     <div className="container-lista-tarefas">
       <form onSubmit={handleSubmit} id="lista-tarefas-form">
         <div className="header-listaTarefas">
-            <h4 className="titulo-listaTarefas">Lista de Tarefas</h4>
+          <h4 className="titulo-listaTarefas">Lista de Tarefas</h4>
           <div className="container-contadores">
             <div className="contador-pendentes">
               <span className="contador-numero">{tarefasPendentes}</span>
@@ -237,6 +237,7 @@ export default function ListaTarefas() {
           className="clearAll-tasks"
           title="Apagar todas as tarefas"
           onClick={() => setTarefas([])} // seta como um array vazio mueheheh muto fácil (to até achando que tá errado)
+          disabled={tarefas.length === 0}
         >
           <svg
             className="deleteAll"
