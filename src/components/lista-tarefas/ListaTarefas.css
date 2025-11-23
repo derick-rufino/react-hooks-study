@@ -77,13 +77,33 @@ li.item-tarefa {
   align-items: center;
 }
 
+ul.lista-tarefas li.empty-tarefa {
+  background: var(--gray-100);
+  color: var(--text-secondary);
+  text-align: center;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-sm);
+}
+
+li.empty-tarefa .smiley-svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--text-secondary);
+  stroke-width: 2;
+}
+
 div.wrapper-paragrafo {
   display: flex;
   align-items: center;
   gap: calc(var(--spacing-sm) + 6px);
   /* let the paragraph area grow/shrink inside the flex row */
   flex: 1 1 auto;
-  min-width: 0; /* allow children to shrink properly */
+  min-width: 0;
+  /* allow children to shrink properly */
 }
 
 /* ! Gerado por IA */
@@ -97,7 +117,8 @@ input[type="checkbox"].checkbox-tarefa {
   flex: 0 0 auto;
   border-radius: 8px;
   /* explicit greens so the checkbox stays green regardless of global vars */
-  border: 2px solid #6fc58d; /* light green */
+  border: 2px solid #6fc58d;
+  /* light green */
   background: transparent;
   display: inline-flex;
   align-items: center;
@@ -108,14 +129,17 @@ input[type="checkbox"].checkbox-tarefa {
     transform 80ms ease;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 18px 18px; /* larger icon for readability */
-  accent-color: transparent; /* neutralize UA browser accent */
+  background-size: 18px 18px;
+  /* larger icon for readability */
+  accent-color: transparent;
+  /* neutralize UA browser accent */
   box-sizing: border-box;
 }
 
 /* Hover (not checked) */
 input[type="checkbox"].checkbox-tarefa:hover:not(:disabled):not(:checked) {
-  border-color: #16a34a; /* emerald-600 */
+  border-color: #16a34a;
+  /* emerald-600 */
 }
 
 /* Focus visible for accessibility - subtle green ring */
@@ -126,15 +150,18 @@ input[type="checkbox"].checkbox-tarefa:focus-visible {
 
 /* Checked state: solid green background with white filled check icon (no shadows/gradients) */
 input[type="checkbox"].checkbox-tarefa:checked {
-  background-color: #16a34a; /* emerald-600 */
-  border-color: #8be0a9; /* emerald-700 */
+  background-color: #16a34a;
+  /* emerald-600 */
+  border-color: #8be0a9;
+  /* emerald-700 */
   /* use stroked white SVG with thicker stroke for better legibility */
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z' /></svg>");
 }
 
 /* Hover when checked: slightly darker green */
 input[type="checkbox"].checkbox-tarefa:checked:hover:not(:disabled) {
-  background-color: #14532d; /* darker emerald */
+  background-color: #14532d;
+  /* darker emerald */
   border-color: #bbf7d0;
 }
 
@@ -142,8 +169,10 @@ input[type="checkbox"].checkbox-tarefa:checked:hover:not(:disabled) {
 input[type="checkbox"].checkbox-tarefa:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  border-color: #d1d5db; /* gray-300 */
-  background-color: #e5e7eb; /* gray-200 */
+  border-color: #d1d5db;
+  /* gray-300 */
+  background-color: #e5e7eb;
+  /* gray-200 */
   background-image: none;
 }
 
@@ -167,6 +196,7 @@ div.filter-search-container {
   border-radius: var(--radius-full);
   padding: 0;
 }
+
 div.filter-search-container.animating-width {
   overflow: hidden;
   animation: widthIncrease 300ms ease forwards;
@@ -177,6 +207,7 @@ div.filter-search-container.animating-width {
   from {
     width: 78px;
   }
+
   to {
     width: 100%;
   }
@@ -207,6 +238,12 @@ div.list-actions button.filter-tasks {
 div.list-actions button.clearAll-tasks:hover {
   background-color: var(--danger-light);
   color: var(--white);
+}
+
+div.list-actions button.clearAll-tasks:hover svg,
+div.list-actions button.clearAll-tasks:hover svg {
+  color: var(--white);
+  stroke: var(--white) !important;
 }
 
 div.filter-search-container input[type="text"].searchbox {

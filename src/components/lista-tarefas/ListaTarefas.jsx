@@ -14,6 +14,15 @@ export default function ListaTarefas() {
   const [, copyText] = useCopyToClipboard();
 
   const [searchboxOpen, setSearchboxOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const searchTermNormalizado = searchTerm.trim().toLowerCase();
+
+  const tarefasVisiveis =
+    searchboxOpen && searchTerm.trim() !== ""
+      ? tarefas.filter(tarefa =>
+          tarefa.texto.toLowerCase().includes(searchTermNormalizado)
+        )
+      : tarefas;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,6 +48,7 @@ export default function ListaTarefas() {
 
     setTarefas((prevTarefas) => [novaTarefa, ...prevTarefas]);
     setTarefaAtual("");
+    setMensagemErro("")
 
     addToast({
       type: "success",
@@ -46,6 +56,10 @@ export default function ListaTarefas() {
       message: `Tarefa adicionada: ${texto}`,
     });
   };
+
+ /* function handleSearch(texto) {
+    tarefas.filter((tarefa) => tarefa.texto.toLowerCase().includes(texto));
+  } */
 
   function handleDelete(id) {
     /* AI-ADDED START: handler para remover tarefa por id (gerado por assistente) */
@@ -55,16 +69,14 @@ export default function ListaTarefas() {
   }
 
   function toggleComplete(id, concluida) {
-    if (!concluida === true) {
+    if (!concluida) {
       addToast({ type: "success", message: "Tarefa concluída!" });
     }
-    /* AI-ADDED START: handler para alternar propriedade `concluida` (gerado por assistente) */
     setTarefas((prev) =>
       prev.map((tarefa) =>
         tarefa.id === id ? { ...tarefa, concluida: !tarefa.concluida } : tarefa
       )
     );
-    /* AI-ADDED END */
   }
 
   async function handleCopy(texto) {
@@ -108,9 +120,6 @@ export default function ListaTarefas() {
             />
           </svg>
         </button>
-        {mensagemErro !== "" && tarefas.includes(tarefaAtual) && (
-          <p className="mensagem-erro">{mensagemErro}</p>
-        )}
       </form>
       <div className="list-actions">
         <div
@@ -173,7 +182,9 @@ export default function ListaTarefas() {
               className="searchbox"
               autoFocus={true}
               autoComplete="task"
-              // onChange={handleSearch(e)}
+              placeholder="Procurar tarefa"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
           )}
         </div>
@@ -206,85 +217,105 @@ export default function ListaTarefas() {
         </button>
       </div>
       <ul className="lista-tarefas">
-        {tarefas.map((tarefa) => (
-          <li key={tarefa.id} className="item-tarefa" name="task">
-            <div className="wrapper-paragrafo">
-              {/* AI-ADDED START: checkbox controlado e ligação com toggleComplete (gerado por assistente) */}
-              <input
-                type="checkbox"
-                className="checkbox-tarefa"
-                checked={tarefa.concluida}
-                onChange={() => toggleComplete(tarefa.id, tarefa.concluida)}
-                aria-label={`Marcar tarefa ${tarefa.texto} como concluída`}
+        {tarefasVisiveis.length !== 0 ? (
+          tarefasVisiveis.map((tarefa) => (
+            <li key={tarefa.id} className="item-tarefa" name="task">
+              <div className="wrapper-paragrafo">
+                {/* AI-ADDED START: checkbox controlado e ligação com toggleComplete (gerado por assistente) */}
+                <input
+                  type="checkbox"
+                  className="checkbox-tarefa"
+                  checked={tarefa.concluida}
+                  onChange={() => toggleComplete(tarefa.id, tarefa.concluida)}
+                  aria-label={`Marcar tarefa ${tarefa.texto} como concluída`}
+                />
+                {/* AI-ADDED END */}
+                <p
+                  className={`texto-tarefa ${
+                    tarefa.concluida ? "concluida" : ""
+                  }`}
+                >
+                  {tarefa.texto}
+                </p>
+              </div>
+              <div className="actions-container">
+                {/* AI-ADDED START: botão de copiar com tipo button (gerado por assistente) */}
+                <button
+                  type="button"
+                  className="copiar-texto tarefaAction"
+                  onClick={() => handleCopy(tarefa.texto)}
+                  aria-label={`Copiar tarefa ${tarefa.texto}`}
+                  title="Copiar"
+                >
+                  {/* AI-ADDED END */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="icon icon-tabler icons-tabler-outline icon-tabler-copy"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" />
+                    <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
+                  </svg>
+                </button>
+                {/* AI-ADDED START: botão de apagar com type=button (gerado por assistente) */}
+                <button
+                  type="button"
+                  className="apagarTarefa  tarefaAction"
+                  onClick={() => handleDelete(tarefa.id, tarefa.texto)}
+                  aria-label={`Apagar ${tarefa.texto}`}
+                  title="Apagar"
+                >
+                  {/* AI-ADDED END */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="icon icon-tabler icons-tabler-outline icon-tabler-trash"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 7l16 0" />
+                    <path d="M10 11l0 6" />
+                    <path d="M14 11l0 6" />
+                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                  </svg>
+                </button>
+              </div>
+            </li>
+          ))
+        ) : (
+          <li className="item-tarefa empty-tarefa">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6 smiley-svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z"
               />
-              {/* AI-ADDED END */}
-              <p
-                className={`texto-tarefa ${
-                  tarefa.concluida ? "concluida" : ""
-                }`}
-              >
-                {tarefa.texto}
-              </p>
-            </div>
-            <div className="actions-container">
-              {/* AI-ADDED START: botão de copiar com tipo button (gerado por assistente) */}
-              <button
-                type="button"
-                className="copiar-texto tarefaAction"
-                onClick={() => handleCopy(tarefa.texto)}
-                aria-label={`Copiar tarefa ${tarefa.texto}`}
-                title="Copiar"
-              >
-                {/* AI-ADDED END */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="icon icon-tabler icons-tabler-outline icon-tabler-copy"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" />
-                  <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
-                </svg>
-              </button>
-              {/* AI-ADDED START: botão de apagar com type=button (gerado por assistente) */}
-              <button
-                type="button"
-                className="apagarTarefa  tarefaAction"
-                onClick={() => handleDelete(tarefa.id, tarefa.texto)}
-                aria-label={`Apagar ${tarefa.texto}`}
-                title="Apagar"
-              >
-                {/* AI-ADDED END */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="icon icon-tabler icons-tabler-outline icon-tabler-trash"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M4 7l16 0" />
-                  <path d="M10 11l0 6" />
-                  <path d="M14 11l0 6" />
-                  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                </svg>
-              </button>
-            </div>
+            </svg>
+            Não há tarefas
           </li>
-        ))}
+        )}
       </ul>
     </div>
   );
