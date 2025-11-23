@@ -3,11 +3,12 @@ div.container-lista-tarefas {
   flex-direction: column;
   align-items: flex-start;
   gap: var(--spacing-md);
-  padding: var(--spacing-sm);
-  background-color: var(--gray-400);
+  padding: var(--spacing-lg);
+  background-color: var(--surface-200);
   border-radius: var(--radius-lg);
-  border: solid 2px var(--gray-600);
+  border: solid 2px var(--border-color);
   width: min(100%, 450px);
+  box-shadow: var(--shadow-md);
 }
 
 div.header-listaTarefas {
@@ -80,10 +81,11 @@ form#lista-tarefas-form {
   gap: var(--spacing-sm);
   width: 100%;
   flex-wrap: wrap;
-  background-color: var(--white);
+  background-color: var(--surface-100);
   padding: var(--spacing-md);
   height: fit-content;
   border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
 }
 
 input[type="text"]#nomeTarefa {
@@ -135,15 +137,17 @@ li.item-tarefa {
   font-size: var(--font-size-base);
   color: var(--text-primary);
   padding: var(--spacing-md);
-  background-color: var(--gray-100);
+  background-color: var(--surface-100);
   border-radius: var(--radius-md);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 1px solid var(--border-color);
+  transition: var(--transition-fast);
 }
 
 ul.lista-tarefas li.empty-tarefa {
-  background: var(--gray-100);
+  background: var(--surface-100);
   color: var(--text-secondary);
   text-align: center;
   padding: var(--spacing-md);
@@ -152,6 +156,7 @@ ul.lista-tarefas li.empty-tarefa {
   align-items: center;
   justify-content: flex-start;
   gap: var(--spacing-sm);
+  border: 1px solid var(--border-color);
 }
 
 li.empty-tarefa .smiley-svg {
@@ -178,64 +183,53 @@ input[type="checkbox"].checkbox-tarefa {
   margin: 0;
   padding: 0;
   flex: 0 0 auto;
-  border-radius: 8px;
-  /* explicit greens so the checkbox stays green regardless of global vars */
-  border: 2px solid #6fc58d;
-  /* light green */
-  background: transparent;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--success-light);
+  background: var(--surface-100);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   vertical-align: middle;
   cursor: pointer;
-  transition: border-color 120ms ease, background-color 120ms ease,
-    transform 80ms ease;
+  transition: var(--transition-fast);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 18px 18px;
-  /* larger icon for readability */
   accent-color: transparent;
-  /* neutralize UA browser accent */
   box-sizing: border-box;
 }
 
 /* Hover (not checked) */
 input[type="checkbox"].checkbox-tarefa:hover:not(:disabled):not(:checked) {
-  border-color: #16a34a;
-  /* emerald-600 */
+  border-color: var(--success);
+  background-color: var(--success-lightest);
 }
 
-/* Focus visible for accessibility - subtle green ring */
+/* Focus visible for accessibility */
 input[type="checkbox"].checkbox-tarefa:focus-visible {
-  outline: 3px solid rgba(22, 163, 74, 0.18);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 2px;
 }
 
-/* Checked state: solid green background with white filled check icon (no shadows/gradients) */
+/* Checked state: solid background with check icon */
 input[type="checkbox"].checkbox-tarefa:checked {
-  background-color: #16a34a;
-  /* emerald-600 */
-  border-color: #8be0a9;
-  /* emerald-700 */
-  /* use stroked white SVG with thicker stroke for better legibility */
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z' /></svg>");
+  background-color: var(--success);
+  border-color: var(--success-dark);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z' /></svg>");
 }
 
-/* Hover when checked: slightly darker green */
+/* Hover when checked: slightly darker */
 input[type="checkbox"].checkbox-tarefa:checked:hover:not(:disabled) {
-  background-color: #14532d;
-  /* darker emerald */
-  border-color: #bbf7d0;
+  background-color: var(--success-dark);
+  border-color: var(--success-darker);
 }
 
 /* Disabled state */
 input[type="checkbox"].checkbox-tarefa:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  border-color: #d1d5db;
-  /* gray-300 */
-  background-color: #e5e7eb;
-  /* gray-200 */
+  border-color: var(--gray-300);
+  background-color: var(--gray-200);
   background-image: none;
 }
 
@@ -255,9 +249,10 @@ div.filter-search-container {
   gap: var(--spacing-sm);
   max-width: 65%;
   width: fit-content;
-  background-color: var(--gray-200);
+  background-color: var(--surface-200);
   border-radius: var(--radius-full);
   padding: 0;
+  border: 1px solid var(--border-color);
 }
 
 div.filter-search-container.animating-width {
@@ -278,8 +273,8 @@ div.filter-search-container.animating-width {
 
 div.list-actions button.clearAll-tasks,
 div.list-actions button.filter-tasks {
-  background: var(--gray-200);
-  border: none;
+  background: var(--surface-200);
+  border: 1px solid var(--border-color);
   color: var(--text-primary);
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--radius-full);

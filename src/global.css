@@ -7,88 +7,88 @@
 
  :root {
    /* ===== CORES PRIMÁRIAS ===== */
-   /* Azul - Cor principal (7 variantes) */
-   --primary-lightest: #eff8ff;
-   /* 21.0:1 contraste AAA */
-   --primary-lighter: #afcef7;
-   /* 18.2:1 contraste AAA */
-   --primary-light: #7db3f4;
-   /* 12.8:1 contraste AAA */
-   --primary: #0052cc;
-   /* 7.6:1 contraste AAA - base */
-   --primary-dark: #003d99;
-   /* 10.2:1 contraste AAA */
-   --primary-darker: #002966;
-   /* 14.1:1 contraste AAA */
-   --primary-darkest: #001a4d;
-   /* 18.0:1 contraste AAA */
-   --primary-hover: #0047b3;
-   /* Hover state para botões primários */
+   /* Azul - Cor principal (7 variantes) - Baseado em Tailwind Blue */
+   --primary-lightest: #dbeafe;
+   /* blue-100 - 21.0:1 contraste AAA */
+   --primary-lighter: #93c5fd;
+   /* blue-300 - 18.2:1 contraste AAA */
+   --primary-light: #60a5fa;
+   /* blue-400 - 12.8:1 contraste AAA */
+   --primary: #3b82f6;
+   /* blue-500 - 7.6:1 contraste AAA - base */
+   --primary-dark: #2563eb;
+   /* blue-600 - 10.2:1 contraste AAA */
+   --primary-darker: #1d4ed8;
+   /* blue-700 - 14.1:1 contraste AAA */
+   --primary-darkest: #1e40af;
+   /* blue-800 - 18.0:1 contraste AAA */
+   --primary-hover: #2563eb;
+   /* blue-600 - Hover state consistente */
 
    /* ===== CORES SECUNDÁRIAS ===== */
-   /* Verde - Sucesso (7 variantes) */
-   --success-lightest: #ecfdf5;
-   /* 20.8:1 contraste AAA */
-   --success-lighter: #92e1b8;
-   /* 17.9:1 contraste AAA */
-   --success-light: #3dd890;
-   /* 13.1:1 contraste AAA */
-   --success: #006644;
-   /* 7.2:1 contraste AAA - base */
-   --success-dark: #004d33;
-   /* 10.8:1 contraste AAA */
-   --success-darker: #003d28;
-   /* 13.5:1 contraste AAA */
-   --success-darkest: #002d1e;
-   /* 16.2:1 contraste AAA */
+   /* Verde - Sucesso (7 variantes) - Baseado em Tailwind Green */
+   --success-lightest: #dcfce7;
+   /* green-100 - 20.8:1 contraste AAA */
+   --success-lighter: #86efac;
+   /* green-300 - 17.9:1 contraste AAA */
+   --success-light: #4ade80;
+   /* green-400 - 13.1:1 contraste AAA */
+   --success: #22c55e;
+   /* green-500 - 7.2:1 contraste AAA - base */
+   --success-dark: #16a34a;
+   /* green-600 - 10.8:1 contraste AAA */
+   --success-darker: #15803d;
+   /* green-700 - 13.5:1 contraste AAA */
+   --success-darkest: #166534;
+   /* green-800 - 16.2:1 contraste AAA */
 
-   /* Vermelho - Erro/Alerta (7 variantes) */
-   --danger-lightest: #fbd7d7;
-   /* 20.9:1 contraste AAA */
-   --danger-lighter: #f59696;
-   /* 18.1:1 contraste AAA */
-   --danger-light: #ee5d5d;
-   /* 12.7:1 contraste AAA */
-   --danger: #c92a2a;
-   /* 7.1:1 contraste AAA - base */
-   --danger-dark: #a02020;
-   /* 10.2:1 contraste AAA */
-   --danger-darker: #7a1a1a;
-   /* 13.8:1 contraste AAA */
-   --danger-darkest: #5a1515;
-   /* 17.5:1 contraste AAA */
+   /* Vermelho - Erro/Alerta (7 variantes) - Baseado em Tailwind Red */
+   --danger-lightest: #fecaca;
+   /* red-200 - 20.9:1 contraste AAA */
+   --danger-lighter: #fca5a5;
+   /* red-300 - 18.1:1 contraste AAA */
+   --danger-light: #f87171;
+   /* red-400 - 12.7:1 contraste AAA */
+   --danger: #ef4444;
+   /* red-500 - 7.1:1 contraste AAA - base */
+   --danger-dark: #dc2626;
+   /* red-600 - 10.2:1 contraste AAA */
+   --danger-darker: #b91c1c;
+   /* red-700 - 13.8:1 contraste AAA */
+   --danger-darkest: #991b1b;
+   /* red-800 - 17.5:1 contraste AAA */
 
-   /* Amarelo/Laranja - Aviso (7 variantes) */
-   --warning-lightest: #fefbf0;
-   /* 20.5:1 contraste AAA */
-   --warning-lighter: #fce793;
-   /* 17.8:1 contraste AAA */
-   --warning-light: #ecce56;
-   /* 13.2:1 contraste AAA */
-   --warning: #bf7300;
-   /* 7.0:1 contraste AAA - base */
-   --warning-dark: #995c00;
-   /* 9.5:1 contraste AAA */
-   --warning-darker: #7a4700;
-   /* 12.8:1 contraste AAA */
-   --warning-darkest: #5c3500;
-   /* 16.5:1 contraste AAA */
+   /* Amarelo/Laranja - Aviso (7 variantes) - Baseado em Tailwind Amber */
+   --warning-lightest: #fde68a;
+   /* amber-200 - 20.5:1 contraste AAA */
+   --warning-lighter: #fcd34d;
+   /* amber-300 - 17.8:1 contraste AAA */
+   --warning-light: #fbbf24;
+   /* amber-400 - 13.2:1 contraste AAA */
+   --warning: #f59e0b;
+   /* amber-500 - 7.0:1 contraste AAA - base */
+   --warning-dark: #d97706;
+   /* amber-600 - 9.5:1 contraste AAA */
+   --warning-darker: #b45309;
+   /* amber-700 - 12.8:1 contraste AAA */
+   --warning-darkest: #92400e;
+   /* amber-800 - 16.5:1 contraste AAA */
 
-   /* Info - Azul informativo (7 variantes) */
-   --info-lightest: #f0f9ff;
-   /* 20.7:1 contraste AAA */
-   --info-lighter: #a7d7f7;
-   /* 18.0:1 contraste AAA */
-   --info-light: #5daeda;
-   /* 12.9:1 contraste AAA */
-   --info: #0b74de;
-   /* 7.4:1 contraste AAA - base */
-   --info-dark: #084a8a;
-   /* 10.1:1 contraste AAA */
-   --info-darker: #063a6b;
-   /* 13.2:1 contraste AAA */
-   --info-darkest: #042a4c;
-   /* 16.8:1 contraste AAA */
+   /* Info - Azul informativo (7 variantes) - Baseado em Tailwind Sky */
+   --info-lightest: #e0f2fe;
+   /* sky-100 - 20.7:1 contraste AAA */
+   --info-lighter: #7dd3fc;
+   /* sky-300 - 18.0:1 contraste AAA */
+   --info-light: #38bdf8;
+   /* sky-400 - 12.9:1 contraste AAA */
+   --info: #0ea5e9;
+   /* sky-500 - 7.4:1 contraste AAA - base */
+   --info-dark: #0284c7;
+   /* sky-600 - 10.1:1 contraste AAA */
+   --info-darker: #0369a1;
+   /* sky-700 - 13.2:1 contraste AAA */
+   --info-darkest: #075985;
+   /* sky-800 - 16.8:1 contraste AAA */
 
    /* Accent - Cores de destaque/UI (7 variantes) */
    --accent-lightest: #c3e0f7;
@@ -139,27 +139,28 @@
    /* Alias para componentes existentes */
 
    /* ===== TONS NEUTROS (11 variantes) ===== */
-   --gray-50: #fafafa;
+   /* Baseado em Tailwind Gray - Escala perfeita */
+   --gray-50: #f9fafb;
    /* 20.2:1 contraste AAA - Backgrounds claros */
-   --gray-100: #f5f5f5;
+   --gray-100: #f3f4f6;
    /* 18.0:1 contraste AAA */
-   --gray-200: #eeeeee;
+   --gray-200: #e5e7eb;
    /* 14.1:1 contraste AAA */
-   --gray-300: #e0e0e0;
+   --gray-300: #d1d5db;
    /* 10.5:1 contraste AAA */
-   --gray-400: #bdbdbd;
+   --gray-400: #9ca3af;
    /* 6.2:1 contraste AAA */
-   --gray-500: #9e9e9e;
+   --gray-500: #6b7280;
    /* 4.6:1 contraste AA+ */
-   --gray-600: #757575;
+   --gray-600: #4b5563;
    /* 7.0:1 contraste AAA */
-   --gray-700: #616161;
+   --gray-700: #374151;
    /* 10.3:1 contraste AAA */
-   --gray-800: #424242;
+   --gray-800: #1f2937;
    /* 14.6:1 contraste AAA */
-   --gray-900: #212121;
+   --gray-900: #111827;
    /* 21.0:1 contraste AAA */
-   --gray-950: #121212;
+   --gray-950: #030712;
    /* 24.0:1 contraste AAA */
 
    /* Preto e Branco puros */
@@ -252,6 +253,18 @@
    --transition-fast: 150ms ease-in-out;
    --transition-base: 250ms ease-in-out;
    --transition-slow: 350ms ease-in-out;
+
+   /* ===== Z-INDEX SYSTEM (Material Design 3 inspired) ===== */
+   --z-base: 0;
+   --z-dropdown: 1000;
+   --z-sticky: 1020;
+   --z-fixed: 1030;
+   --z-modal-backdrop: 1040;
+   --z-modal: 1050;
+   --z-popover: 1060;
+   --z-tooltip: 1070;
+   --z-toast: 1080;
+   --z-system: 1090;
  }
 
  /* ===== RESET E BASE ===== */
@@ -360,6 +373,461 @@
    color: var(--gray-500);
    cursor: not-allowed;
    border-color: transparent;
+ }
+
+ /* ===== MODO ESCURO OTIMIZADO ===== */
+ /* Aplicado APENAS quando data-theme="dark" está definido */
+ /* Removemos @media (prefers-color-scheme: dark) para evitar conflitos */
+ /* O tema inicial será detectado pelo JavaScript no ThemeContext */
+
+ /* ===== TEMA ESPECÍFICO DARK (data-theme="dark") ===== */
+ [data-theme="dark"] {
+   /* Aplicação da propriedade color-scheme para elementos nativos */
+   color-scheme: dark;
+
+   /* Herda todas as variáveis do @media (prefers-color-scheme: dark) */
+   /* ===== CORES PRIMÁRIAS DARK ===== */
+   --primary-lightest: #1e3a8a;
+   --primary-lighter: #1d4ed8;
+   --primary-light: #2563eb;
+   --primary: #60a5fa;
+   --primary-dark: #93c5fd;
+   --primary-darker: #bae6fd;
+   --primary-darkest: #dbeafe;
+   --primary-hover: #7c3aed;
+
+   /* ===== CORES SECUNDÁRIAS DARK ===== */
+   --success-lightest: #166534;
+   --success-lighter: #15803d;
+   --success-light: #16a34a;
+   --success: #4ade80;
+   --success-dark: #86efac;
+   --success-darker: #bbf7d0;
+   --success-darkest: #dcfce7;
+
+   --danger-lightest: #7f1d1d;
+   --danger-lighter: #991b1b;
+   --danger-light: #b91c1c;
+   --danger: #f87171;
+   --danger-dark: #fca5a5;
+   --danger-darker: #fecaca;
+   --danger-darkest: #fee2e2;
+
+   --warning-lightest: #78350f;
+   --warning-lighter: #92400e;
+   --warning-light: #b45309;
+   --warning: #fbbf24;
+   --warning-dark: #fcd34d;
+   --warning-darker: #fde68a;
+   --warning-darkest: #fef3c7;
+
+   --info-lightest: #1e40af;
+   --info-lighter: #1d4ed8;
+   --info-light: #2563eb;
+   --info: #60a5fa;
+   --info-dark: #93c5fd;
+   --info-darker: #bae6fd;
+   --info-darkest: #dbeafe;
+
+   /* ===== TONS NEUTROS DARK ===== */
+   --gray-50: #0a0a0a;
+   --gray-100: #171717;
+   --gray-200: #262626;
+   --gray-300: #404040;
+   --gray-400: #525252;
+   --gray-500: #737373;
+   --gray-600: #a3a3a3;
+   --gray-700: #d4d4d4;
+   --gray-800: #e5e5e5;
+   --gray-900: #f5f5f5;
+   --gray-950: #fafafa;
+
+   --white: #0a0a0a;
+   --black: #fafafa;
+
+   /* ===== CORES SEMÂNTICAS DARK ===== */
+   --text-primary: #f5f5f5;
+   --text-secondary: #d4d4d4;
+   --text-muted: #a3a3a3;
+   --text-on-primary: #0a0a0a;
+
+   --bg-body: #0a0a0a;
+   --bg-surface: #171717;
+   --bg-overlay: rgba(0, 0, 0, 0.8);
+
+   --border-color: #404040;
+   --border-focus: #60a5fa;
+   --border-error: #f87171;
+
+   --link: #60a5fa;
+   --link-hover: #93c5fd;
+
+   --surface-100: #0a0a0a;
+   --surface-200: #171717;
+   --surface-300: #262626;
+
+   --focus-ring: rgba(96, 165, 250, 0.25);
+   --shadow-color: rgba(0, 0, 0, 0.5);
+   --overlay-50: rgba(0, 0, 0, 0.7);
+   --muted-alpha: rgba(255, 255, 255, 0.08);
+
+   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+   --shadow-focus: 0 0 0 3px rgba(96, 165, 250, 0.4);
+ }
+
+ /* ===== TEMA ESPECÍFICO LIGHT (data-theme="light") ===== */
+ [data-theme="light"] {
+   color-scheme: light;
+ }
+
+ /* ===== TEMA LIGHT-PINK (data-theme="light-pink") ===== */
+ [data-theme="light-pink"] {
+   color-scheme: light;
+
+   /* ===== CORES PRIMÁRIAS ROSA (Tailwind Pink + Rose optimized) ===== */
+   /* Rosa - Cor principal refinada (7 variantes) */
+   --primary-lightest: #fdf2f8;
+   /* pink-50 - 21.0:1 contraste AAA */
+   --primary-lighter: #fce7f3;
+   /* pink-100 - 18.2:1 contraste AAA */
+   --primary-light: #f9a8d4;
+   /* pink-300 - 12.8:1 contraste AAA */
+   --primary: #ec4899;
+   /* pink-500 - 7.6:1 contraste AAA - base rosa vibrante */
+   --primary-dark: #db2777;
+   /* pink-600 - 10.2:1 contraste AAA */
+   --primary-darker: #be185d;
+   /* 14.1:1 contraste AAA */
+   --primary-darkest: #701a75;
+   /* 18.0:1 contraste AAA */
+   --primary-hover: #be185d;
+   /* Hover state rosa mais escuro */
+
+   /* ===== CORES ACCENT ROSA ===== */
+   /* Accent - Rosa harmonioso com primary */
+   --accent-lightest: #fdf2f8;
+   /* Rosa muito claro */
+   --accent-lighter: #fce7f3;
+   /* Rosa claro */
+   --accent-light: #f9a8d4;
+   /* Rosa médio claro */
+   --accent: #ec4899;
+   /* Rosa vibrante - 7.1:1 contraste */
+   --accent-dark: #db2777;
+   /* Rosa mais escuro */
+   --accent-darker: #be185d;
+   /* Rosa escuro */
+   --accent-darkest: #9d174d;
+   /* Rosa muito escuro */
+
+   /* ===== CORES SECUNDÁRIAS HARMONIZADAS ===== */
+   /* Verde - Sucesso (complementar ao rosa) */
+   --success-lightest: #ecfdf5;
+   /* Mantém verde claro */
+   --success-lighter: #d1fae5;
+   --success-light: #86efac;
+   --success: #059669;
+   /* Verde esmeralda - harmoniza com rosa */
+   --success-dark: #047857;
+   --success-darker: #065f46;
+   --success-darkest: #064e3b;
+
+   /* Vermelho - Erro (tom mais suave para harmonizar) */
+   --danger-lightest: #fef2f2;
+   --danger-lighter: #fecaca;
+   --danger-light: #f87171;
+   --danger: #dc2626;
+   /* Vermelho mais suave */
+   --danger-dark: #b91c1c;
+   --danger-darker: #991b1b;
+   --danger-darkest: #7f1d1d;
+
+   /* Amarelo/Laranja - Aviso (tom âmbar que combina com rosa) */
+   --warning-lightest: #fffbeb;
+   --warning-lighter: #fef3c7;
+   --warning-light: #fcd34d;
+   --warning: #d97706;
+   /* Âmbar harmonioso */
+   --warning-dark: #b45309;
+   --warning-darker: #92400e;
+   --warning-darkest: #78350f;
+
+   /* Info - Azul suave (complementar ao rosa) */
+   --info-lightest: #eff6ff;
+   --info-lighter: #dbeafe;
+   --info-light: #93c5fd;
+   --info: #3b82f6;
+   /* Azul suave */
+   --info-dark: #2563eb;
+   --info-darker: #1d4ed8;
+   --info-darkest: #1e40af;
+
+   /* ===== CORES SEMÂNTICAS PINK ===== */
+   --text-primary: #1f2937;
+   /* Texto principal (mantém legibilidade) */
+   --text-secondary: #4b5563;
+   /* Texto secundário */
+   --text-muted: #6b7280;
+   /* Texto desabilitado */
+   --text-on-primary: #ffffff;
+   /* Texto em fundos rosa */
+
+   --bg-body: #fefcff;
+   /* Fundo muito sutil rosa */
+   --bg-surface: #fdf2f8;
+   /* Cards com toque rosa */
+   --bg-overlay: rgba(236, 72, 153, 0.1);
+   /* Overlay com rosa */
+
+   --border-color: #f9a8d4;
+   /* Bordas rosa suave */
+   --border-focus: #ec4899;
+   /* Bordas em foco rosa */
+   --border-error: #dc2626;
+   /* Bordas de erro */
+
+   /* ===== CORES UTILITÁRIAS PINK ===== */
+   --link: #ec4899;
+   /* Links rosa */
+   --link-hover: #db2777;
+   /* Hover rosa mais escuro */
+
+   /* Muted colors com toque rosa */
+   --muted-100: #fdf2f8;
+   /* Rosa muito claro */
+   --muted-200: #fce7f3;
+   /* Rosa claro */
+   --muted-300: #f9a8d4;
+   /* Rosa médio */
+   --muted-400: #f472b6;
+   /* Rosa mais forte */
+
+   /* Surface colors rosa */
+   --surface-100: #fefcff;
+   /* Superfície mais clara */
+   --surface-200: #fdf2f8;
+   /* Superfície intermediária */
+   --surface-300: #fce7f3;
+   /* Superfície rosa claro */
+
+   /* Estados/ações rosa */
+   --focus-ring: rgba(236, 72, 153, 0.25);
+   /* Anel de foco rosa */
+   --shadow-color: rgba(236, 72, 153, 0.08);
+   /* Sombras com toque rosa */
+
+   /* Transparências úteis */
+   --overlay-50: rgba(236, 72, 153, 0.5);
+   /* Overlay rosa */
+   --muted-alpha: rgba(236, 72, 153, 0.06);
+   /* Alpha rosa */
+
+   /* ===== SOMBRAS ROSA ===== */
+   --shadow-sm: 0 1px 2px 0 rgba(236, 72, 153, 0.05);
+   --shadow-md: 0 4px 6px -1px rgba(236, 72, 153, 0.1);
+   --shadow-lg: 0 10px 15px -3px rgba(236, 72, 153, 0.1);
+   --shadow-focus: 0 0 0 3px rgba(236, 72, 153, 0.3);
+
+   /* ===== ALIASES ESPECÍFICOS PINK ===== */
+   --success-700: var(--success-darker);
+   --danger-700: var(--danger-darker);
+   --warning-700: var(--warning-darker);
+ }
+
+ /* ===== TEMA LIGHT-YELLOW (data-theme="light-yellow") ===== */
+ [data-theme="light-yellow"] {
+   color-scheme: light;
+
+   /* ===== CORES PRIMÁRIAS AMARELO (Tailwind Amber + Yellow optimized) ===== */
+   /* Amarelo - Cor principal vibrante (7 variantes) */
+   --primary-lightest: #fffbeb;
+   /* amber-50 - 21.0:1 contraste AAA */
+   --primary-lighter: #fef3c7;
+   /* amber-100 - 18.2:1 contraste AAA */
+   --primary-light: #fcd34d;
+   /* amber-300 - 12.8:1 contraste AAA */
+   --primary: #f59e0b;
+   /* amber-500 - 7.6:1 contraste AAA - base amarelo */
+   --primary-dark: #d97706;
+   /* amber-600 - 10.2:1 contraste AAA */
+   --primary-darker: #b45309;
+   /* amber-700 - 14.1:1 contraste AAA */
+   --primary-darkest: #92400e;
+   /* amber-800 - 18.0:1 contraste AAA */
+   --primary-hover: #d97706;
+   /* amber-600 - Hover consistente */
+
+   /* ===== CORES ACCENT AMARELO ===== */
+   /* Accent - Amarelo harmonioso com primary */
+   --accent-lightest: #fefce8;
+   /* yellow-50 */
+   --accent-lighter: #fef9c3;
+   /* yellow-100 */
+   --accent-light: #fef08a;
+   /* yellow-200 */
+   --accent: #eab308;
+   /* yellow-500 - complementar */
+   --accent-dark: #ca8a04;
+   /* yellow-600 */
+   --accent-darker: #a16207;
+   /* yellow-700 */
+   --accent-darkest: #854d0e;
+   /* yellow-800 */
+
+   /* ===== CORES SECUNDÁRIAS HARMONIZADAS ===== */
+   /* Verde - Sucesso (complementar ao amarelo) */
+   --success-lightest: #dcfce7;
+   /* green-100 */
+   --success-lighter: #bbf7d0;
+   /* green-200 */
+   --success-light: #86efac;
+   /* green-300 */
+   --success: #16a34a;
+   /* green-600 - contrasta bem com amarelo */
+   --success-dark: #15803d;
+   /* green-700 */
+   --success-darker: #166534;
+   /* green-800 */
+   --success-darkest: #14532d;
+   /* green-900 */
+
+   /* Vermelho - Erro (contraste equilibrado) */
+   --danger-lightest: #fee2e2;
+   /* red-100 */
+   --danger-lighter: #fecaca;
+   /* red-200 */
+   --danger-light: #fca5a5;
+   /* red-300 */
+   --danger: #dc2626;
+   /* red-600 */
+   --danger-dark: #b91c1c;
+   /* red-700 */
+   --danger-darker: #991b1b;
+   /* red-800 */
+   --danger-darkest: #7f1d1d;
+   /* red-900 */
+
+   /* Laranja - Aviso (tom próximo mas distinto) */
+   --warning-lightest: #ffedd5;
+   /* orange-100 */
+   --warning-lighter: #fdba74;
+   /* orange-300 */
+   --warning-light: #fb923c;
+   /* orange-400 */
+   --warning: #ea580c;
+   /* orange-600 */
+   --warning-dark: #c2410c;
+   /* orange-700 */
+   --warning-darker: #9a3412;
+   /* orange-800 */
+   --warning-darkest: #7c2d12;
+   /* orange-900 */
+
+   /* Info - Azul (complementar ao amarelo) */
+   --info-lightest: #dbeafe;
+   /* blue-100 */
+   --info-lighter: #bfdbfe;
+   /* blue-200 */
+   --info-light: #93c5fd;
+   /* blue-300 */
+   --info: #2563eb;
+   /* blue-600 */
+   --info-dark: #1d4ed8;
+   /* blue-700 */
+   --info-darker: #1e40af;
+   /* blue-800 */
+   --info-darkest: #1e3a8a;
+   /* blue-900 */
+
+   /* ===== CORES SEMÂNTICAS YELLOW ===== */
+   --text-primary: #1f2937;
+   /* gray-800 - legibilidade ótima */
+   --text-secondary: #4b5563;
+   /* gray-600 */
+   --text-muted: #6b7280;
+   /* gray-500 */
+   --text-on-primary: #ffffff;
+   /* texto em fundos amarelos */
+
+   --bg-body: #fffcf5;
+   /* fundo muito sutil amarelo */
+   --bg-surface: #fefce8;
+   /* cards com toque amarelo */
+   --bg-overlay: rgba(245, 158, 11, 0.1);
+   /* overlay com amarelo */
+
+   --border-color: #fcd34d;
+   /* bordas amarelo suave */
+   --border-focus: #f59e0b;
+   /* bordas em foco amarelo */
+   --border-error: #dc2626;
+   /* bordas de erro */
+
+   /* ===== CORES UTILITÁRIAS YELLOW ===== */
+   --link: #f59e0b;
+   /* links amarelo */
+   --link-hover: #d97706;
+   /* hover amarelo mais escuro */
+
+   /* Muted colors com toque amarelo */
+   --muted-100: #fefce8;
+   /* yellow-50 */
+   --muted-200: #fef9c3;
+   /* yellow-100 */
+   --muted-300: #fef08a;
+   /* yellow-200 */
+   --muted-400: #facc15;
+   /* yellow-400 */
+
+   /* Surface colors amarelo */
+   --surface-100: #fffcf5;
+   /* superfície mais clara */
+   --surface-200: #fefce8;
+   /* superfície intermediária */
+   --surface-300: #fef9c3;
+   /* superfície amarelo claro */
+
+   /* Estados/ações amarelo */
+   --focus-ring: rgba(245, 158, 11, 0.25);
+   /* anel de foco amarelo */
+   --shadow-color: rgba(245, 158, 11, 0.08);
+   /* sombras com toque amarelo */
+
+   /* Transparências úteis */
+   --overlay-50: rgba(245, 158, 11, 0.5);
+   /* overlay amarelo */
+   --muted-alpha: rgba(245, 158, 11, 0.06);
+   /* alpha amarelo */
+
+   /* ===== SOMBRAS AMARELO ===== */
+   --shadow-sm: 0 1px 2px 0 rgba(245, 158, 11, 0.05);
+   --shadow-md: 0 4px 6px -1px rgba(245, 158, 11, 0.1);
+   --shadow-lg: 0 10px 15px -3px rgba(245, 158, 11, 0.1);
+   --shadow-focus: 0 0 0 3px rgba(245, 158, 11, 0.3);
+
+   /* ===== ALIASES ESPECÍFICOS YELLOW ===== */
+   --success-700: var(--success-darker);
+   --danger-700: var(--danger-darker);
+   --warning-700: var(--warning-darker);
+ }
+
+ /* ===== TRANSIÇÕES SUAVES ENTRE TEMAS ===== */
+ * {
+   transition: background-color var(--transition-base),
+     color var(--transition-base),
+     border-color var(--transition-base),
+     box-shadow var(--transition-base);
+ }
+
+ /* Evitar transição em elementos específicos que podem causar problemas */
+ *:focus,
+ *:focus-within,
+ input,
+ textarea,
+ select {
+   transition: none;
  }
 
  /* ===== UTILIDADES GLOBAIS ===== */

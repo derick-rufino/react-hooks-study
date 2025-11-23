@@ -1,0 +1,106 @@
+.container-seletor-temas {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.seletor-btn {
+    background: var(--gray-100);
+    border: 2px solid transparent;
+    color: var(--text-primary);
+    border-radius: var(--radius-lg);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.seletor-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ===== CORES ESPECÍFICAS POR TEMA ===== */
+/* Light Theme - Azul */
+#light-theme svg {
+    color: #3b82f6;
+    /* blue-500 - sempre azul */
+    stroke: #3b82f6;
+}
+
+#light-theme:hover svg,
+#light-theme.active svg {
+    color: #2563eb;
+    /* blue-600 - mais escuro no hover/active */
+    stroke: #2563eb;
+}
+
+/* Dark Theme - Cores adaptativas baseadas no tema atual */
+[data-theme="dark"] #dark-theme svg {
+    color: #60a5fa;
+    /* blue-400 - azul claro no dark mode */
+    stroke: #60a5fa;
+}
+
+/* Dark Theme em temas claros - lua mais escura */
+:root #dark-theme svg,
+[data-theme="light"] #dark-theme svg,
+[data-theme="light-pink"] #dark-theme svg,
+[data-theme="light-yellow"] #dark-theme svg {
+    color: #1e40af;
+    /* blue-800 - azul bem escuro para temas claros */
+    stroke: #1e40af;
+}
+
+#dark-theme:hover svg,
+#dark-theme.active svg {
+    opacity: 0.8;
+}
+
+/* Pink Theme - Rosa */
+#pink-light-theme svg {
+    color: #ec4899;
+    /* pink-500 - sempre rosa */
+    stroke: #ec4899;
+    fill: #ec4899;
+}
+
+#pink-light-theme:hover svg,
+#pink-light-theme.active svg {
+    color: #db2777;
+    /* pink-600 - mais escuro no hover/active */
+    stroke: #db2777;
+    fill: #db2777;
+}
+
+/* Yellow Theme - Amarelo */
+#yellow-light-theme svg {
+    color: #f59e0b;
+    /* amber-500 - sempre amarelo */
+    stroke: #f59e0b;
+    fill: #f59e0b;
+}
+
+#yellow-light-theme:hover svg,
+#yellow-light-theme.active svg {
+    color: #d97706;
+    /* amber-600 - mais escuro no hover/active */
+    stroke: #d97706;
+    fill: #d97706;
+}
+
+/* ===== ESTADOS DOS BOTÕES ===== */
+.seletor-btn.active,
+.seletor-btn:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
+}
+
+.seletor-btn.active svg,
+.seletor-btn:hover svg {
+    color: var(--white) !important;
+    stroke: var(--white) !important;
+    fill: var(--white) !important;
+}
