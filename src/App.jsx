@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { ThemeProvider } from "./contexts/themeContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 import Contador from "./components/contador/Contador";
 import FormularioCadastro from "./components/form-cadastro/FormularioCadastro";
